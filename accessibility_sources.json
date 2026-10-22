@@ -1,0 +1,98 @@
+{
+  "title": "Delisting consolidation period source checks for historical universe codes",
+  "checked_on": "2026-10-14",
+  "scope": "Official exchange/company notices documenting a consolidation-period start date, or explicitly documenting that no such period applied. Dates are not inferred backwards from delisting dates.",
+  "entries": [
+    {
+      "code": "sh.600074",
+      "startdate": "2020-04-10",
+      "announcement_date": "2020-04-02",
+      "announcement": "关于*ST保千（600074）终止上市及进入退市整理期交易的公告",
+      "period_trading_sessions": 30,
+      "status": "confirmed",
+      "url": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/2020-04-02/600074_20200402_1.pdf",
+      "evidence_note": "Notice explicitly says the stock begins its delisting consolidation period on 2020-04-10. This was a 30-session period under the then-applicable rule."
+    },
+    {
+      "code": "sh.600146",
+      "startdate": "2022-06-02",
+      "announcement_date": "2022-05-26",
+      "announcement": "商赢环球股份有限公司股票进入退市整理期交易的公告",
+      "period_trading_sessions": 15,
+      "status": "confirmed",
+      "url": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2022-05-26/600146_20220526_3_N15tczE3.pdf",
+      "evidence_note": "Issuer announcement gives 2022-06-02 as the start. It states individual investors need at least two years of stock-trading experience and RMB 500,000 average daily assets over the 20 trading days before opening permissions; investors who do not qualify may only sell shares already held."
+    },
+    {
+      "code": "sh.600242",
+      "startdate": "2023-05-31",
+      "announcement_date": "2023-05-24",
+      "announcement": "关于收到股票终止上市决定的公告（临2023-061；同日另有临2023-062整理期交易公告）",
+      "period_trading_sessions": 15,
+      "status": "confirmed",
+      "url": "https://static.cninfo.com.cn/finalpage/2023-05-24/1216885815.PDF",
+      "evidence_note": "Issuer notice states the exact 2023-05-31 start date and links the same-day detailed trading-arrangement notice."
+    },
+    {
+      "code": "sh.600290",
+      "startdate": null,
+      "announcement_date": "2024-01-09",
+      "announcement": "关于华仪电气股份有限公司股票终止上市的公告（上证公告〔2024〕001号）",
+      "period_trading_sessions": 0,
+      "status": "no_consolidation_period",
+      "url": "https://www.sse.com.cn/disclosure/announcement/listing/stock/c/c_20240109_92503416.shtml",
+      "evidence_note": "Shanghai Stock Exchange explicitly says this trading-based mandatory delisting stock does not enter a delisting consolidation period. Do not assign a synthetic start date."
+    },
+    {
+      "code": "sh.600870",
+      "startdate": "2022-06-02",
+      "announcement_date": "2022-05-26",
+      "announcement": "厦门华侨电子股份有限公司股票进入退市整理期交易的公告（临2022-048）",
+      "period_trading_sessions": 15,
+      "status": "confirmed",
+      "url": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2022-05-26/600870_20220526_2_rcfoc8uK.pdf",
+      "evidence_note": "Issuer notice gives the exact 2022-06-02 start date."
+    },
+    {
+      "code": "sz.000018",
+      "startdate": "2019-11-25",
+      "announcement_date": "2019-11-15",
+      "status": "confirmed",
+      "url": "https://www.szse.cn/disclosure/notice/t20191115_571994.html"
+    },
+    {
+      "code": "sz.000584",
+      "startdate": "2025-06-20",
+      "announcement_date": "2025-06-13",
+      "status": "confirmed",
+      "url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2025-06-13/f36498a3-59f7-458b-a849-f3f76e12afeb.PDF",
+      "corroborating_pre_start_notice": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2025/cc_SEHK_CTCSC_086_2025.pdf"
+    },
+    {
+      "code": "sz.000622",
+      "startdate": "2025-06-25",
+      "announcement_date": "2025-06-19",
+      "status": "confirmed",
+      "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-06-19/ac36f03f-1bba-480d-9012-df4c030c22cb.PDF"
+    },
+    {
+      "code": "sz.000150",
+      "startdate": null,
+      "announcement_date": "2023-04-28",
+      "status": "no_consolidation_period",
+      "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2023-04-28/39e81a07-e3ea-4373-86e6-5d65468ee986.PDF"
+    },
+    {
+      "code": "sz.002013",
+      "startdate": null,
+      "announcement_date": "2023-03-17",
+      "status": "merger_not_consolidation",
+      "evidence_note": "Issuer notice 2023-034, published 2023-03-17, identifies an absorption merger and 2023-03-16 as the conversion record date, not the announcement date. No synthetic retirement-period start assigned. Suspensions and any unimplemented merger settlement stay subject to ledger quality warnings."
+    }
+  ],
+  "interpretation": {
+    "data_handling": "A confirmed period can support tagging only rows whose dates fall inside the documented interval. It does not justify excluding the stock's full earlier history.",
+    "date_semantics": "startdate is the first exchange trading session in the delisting consolidation period; announcement_date is the publication date of the cited notice.",
+    "limitations": "Covers the ten historical universe codes with early-ending quotations. The merger code gets no invented consolidation date. This is not a full-market current security-status service."
+  }
+}

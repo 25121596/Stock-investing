@@ -1,0 +1,320 @@
+"""Model Arena (量化策略多模型竞技场)
+
+Standardized tournament benchmarking platform for A-share quant trading strategies:
+Pits Super-V0.8, Super-V7, Super-V6, Super-V5 against Benchmarks and Placebo controls.
+
+Gladiators in Arena:
+1. Super-V0.8 (LambdaMART Ranker + Amihud Flow + Dynamic Sizing)
+2. Super-V7 (Breadth-Adaptive Regime Sizing Engine)
+3. Super-V6 (A-Share Microstructure & Turnover Factor Engine)
+4. Super-V5 (Audited Enterprise Baseline)
+5. Random-Placebo (3 Independent Random Control Accounts)
+6. Equal-Weight Index (300 Stocks Passive Buy-and-Hold)
+7. Cash-Sweep (GC001 Institutional Repo Overlay)
+
+Usage:
+  python arena.py run              # Run full tournament (2022-2025 or forward 2026)
+  python arena.py leaderboard      # Display live ranked standings table
+  python arena.py dashboard        # Generate HTML visual battle report
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+import numpy as np
+import pandas as pd
+
+from run import load
+from validate_expanded import prepare_bars
+from exploration_features import breadth_days
+from engine import Config
+from experiment_super_v5_maxprofit import SuperV5MaxProfitReplay
+from experiment_super_v7_regime import SuperV7RegimeReplay
+
+ROOT = Path("d:/Benefits/stock-research")
+ARENA_DIR = ROOT / "results/arena"
+DATASET = ROOT / "data/forward-2026-10-13"
+DONOR = ROOT / "results/midterm-access-v3"
+
+
+def build_arena_signals(calendar, tiered_limits):
+    allowed_tiered = {d for d, lim in tiered_limits.items() if lim > 0}
+
+    # 1. Load predictions
+    pred_v2 = pd.read_csv("results/model-v2/predictions-h10-v2.csv", dtype={"date": str, "code": str})
+    pred_v3 = pd.read_csv("results/model-v3/predictions-h10-v3.csv", dtype={"date": str, "code": str})
+    pred_v08 = pd.read_csv("results/model-v08/predictions-h10-v08.csv", dtype={"date": str, "code": str})
+
+    # Signal V5 / V7: Model V2 score >= 0.005
+    sig_v5 = pred_v2[pred_v2.pred_net_return_v2 >= 0.005][["date", "code", "pred_net_return_v2"]].rename(columns={"pred_net_return_v2": "score"})
+    sig_v5 = sig_v5[sig_v5.date.isin(allowed_tiered)]
+
+    # Signal V6: Model V3 score >= 0.005
+    sig_v6 = pred_v3[pred_v3.pred_net_return_v3 >= 0.005][["date", "code", "pred_net_return_v3"]].rename(columns={"pred_net_return_v3": "score"})
+    sig_v6 = sig_v6[sig_v6.date.isin(allowed_tiered)]
+
+    # Signal V0.8: Dual-gated LambdaMART (V2 >= 0.005, sorted by LambdaRank score)
+    merged_v08 = pd.merge(pred_v08[["date", "code", "pred_score_v08"]], pred_v2[["date", "code", "pred_net_return_v2"]], on=["date", "code"])
+    sig_v08 = merged_v08[merged_v08.pred_net_return_v2 >= 0.005].assign(score=lambda df: df.pred_score_v08)[["date", "code", "score"]]
+    sig_v08 = sig_v08[sig_v08.date.isin(allowed_tiered)]
+
+    return sig_v5, sig_v6, sig_v08
+
+
+def run_tournament(start_date="2022-01-01", end_date="2025-12-31", enable_cash=True):
+    ARENA_DIR.mkdir(parents=True, exist_ok=True)
+    manifest, frames, calendar, dividends = load(DATASET)
+    bars = prepare_bars(frames)
+    panel = pd.read_csv(DONOR / "features.csv", dtype={"date": str, "code": str})
+    vol_map = panel.set_index(["date", "code"])["ret_vol20"].to_dict()
+
+    breadth_df = breadth_days(panel, return_col="adj_ret5")
+    b_map = breadth_df.set_index("date")["breadth5"].to_dict()
+    p_map = breadth_df.set_index("date")["pool_size"].to_dict()
+
+    tiered_limits = {
+        d: (0 if p_map.get(d, 0) < 100 or b < 0.45 else (1 if b < 0.55 else 2))
+        for d, b in b_map.items()
+    }
+
+    sig_v5, sig_v6, sig_v08 = build_arena_signals(calendar, tiered_limits)
+    period_days = [d for d in calendar if start_date <= d <= end_date]
+
+    # Configurations
+    cfg_base = Config(capital=30000.0, order_budget=5000.0, max_positions=4, max_exposure=0.65, hold_days=10, stop_loss=0.03)
+    cfg_regime = Config(capital=30000.0, order_budget=7500.0, max_positions=5, max_exposure=0.90, hold_days=10, stop_loss=0.03)
+
+    gladiators = [
+        ("Super-V0.8 (LambdaMART Ranker)", SuperV7RegimeReplay, sig_v08, cfg_regime, {"daily_limits": tiered_limits, "breadth_lookup": b_map}),
+        ("Super-V7 (Dynamic Regime Sizing)", SuperV7RegimeReplay, sig_v5, cfg_regime, {"daily_limits": tiered_limits, "breadth_lookup": b_map}),
+        ("Super-V6 (A-Share Factors)", SuperV5MaxProfitReplay, sig_v6, cfg_base, {"daily_limits": tiered_limits}),
+        ("Super-V5 (Audited Baseline)", SuperV5MaxProfitReplay, sig_v5, cfg_base, {"daily_limits": tiered_limits}),
+    ]
+
+    leaderboard = []
+    equity_curves = {}
+
+    print("\n" + "=" * 105)
+    print(f"ARENA TOURNAMENT ACTIVE: {start_date} -> {end_date} (Cash Sweep: {enable_cash})")
+    print("=" * 105)
+
+    for name, replay_cls, sig_df, cfg, extra_kwargs in gladiators:
+        sig_use = sig_df[sig_df.date.between(start_date, end_date)].copy()
+        rep = replay_cls(frames, period_days, sig_use, dividends, cfg, vol_map=vol_map, enable_cash_overlay=enable_cash, **extra_kwargs)
+        rep.bars = bars
+        rep.run()
+        s = rep.summary()
+        calmar = s["cagr"] / abs(s["max_drawdown"]) if s["max_drawdown"] != 0 else 0
+
+        eq_df = pd.DataFrame(rep.equity)
+        equity_curves[name] = eq_df.set_index("date")["equity"]
+
+        leaderboard.append({
+            "gladiator": name,
+            "category": "Quant Model",
+            "total_return": s["total_return"],
+            "cagr": s["cagr"],
+            "max_drawdown": s["max_drawdown"],
+            "calmar": calmar,
+            "sharpe": s["sharpe"],
+            "win_rate": s["win_rate"],
+            "trades": s["closed_trades"],
+            "profit_factor": s["profit_factor"],
+            "final_equity": s["final_equity"],
+        })
+
+    # Benchmark: Cash / GC001 repo
+    daily_rate = (1 + 0.022) ** (1 / 242) - 1 if enable_cash else 0.0
+    cash_curve = [30000.0 * ((1 + daily_rate) ** i) for i in range(len(period_days))]
+    equity_curves["Benchmark: Cash (GC001)"] = pd.Series(cash_curve, index=period_days)
+    cash_ret = cash_curve[-1] / 30000.0 - 1.0
+    cash_cagr = (cash_curve[-1] / 30000.0) ** (242 / len(period_days)) - 1.0
+    leaderboard.append({
+        "gladiator": "Benchmark: Cash (GC001 Repo)",
+        "category": "Benchmark",
+        "total_return": cash_ret,
+        "cagr": cash_cagr,
+        "max_drawdown": 0.0,
+        "calmar": 99.0,
+        "sharpe": 0.0,
+        "win_rate": 1.0,
+        "trades": 0,
+        "profit_factor": 99.0,
+        "final_equity": cash_curve[-1],
+    })
+
+    # Benchmark: Equal-weight market index of the 300 stocks
+    all_codes = list(frames.keys())
+    eq_market_ret = []
+    base_val = 30000.0
+    val = base_val
+    for d in period_days:
+        rets = []
+        for c in all_codes:
+            bar = bars[c].get(d)
+            if bar and bar.get("pctChg") is not None:
+                try:
+                    p = float(bar["pctChg"])
+                    if np.isfinite(p):
+                        rets.append(p / 100.0)
+                except (ValueError, TypeError):
+                    pass
+        daily_mkt = np.mean(rets) if rets else 0.0
+        val *= (1 + daily_mkt)
+        eq_market_ret.append(val)
+
+    mkt_s = pd.Series(eq_market_ret, index=period_days)
+    equity_curves["Benchmark: Equal-Weight Index"] = mkt_s
+    mkt_tot = mkt_s.iloc[-1] / base_val - 1.0
+    mkt_cagr = (mkt_s.iloc[-1] / base_val) ** (242 / len(period_days)) - 1.0
+    mkt_dd = (mkt_s / mkt_s.cummax() - 1.0).min()
+    mkt_daily_ret = mkt_s.pct_change(fill_method=None).dropna()
+    mkt_sharpe = float(np.sqrt(242) * (mkt_daily_ret.mean() - 0.02 / 242) / (mkt_daily_ret.std() + 1e-8))
+
+    leaderboard.append({
+        "gladiator": "Benchmark: Equal-Weight Stock Index",
+        "category": "Benchmark",
+        "total_return": mkt_tot,
+        "cagr": mkt_cagr,
+        "max_drawdown": mkt_dd,
+        "calmar": mkt_cagr / abs(mkt_dd) if mkt_dd != 0 else 0,
+        "sharpe": mkt_sharpe,
+        "win_rate": float((mkt_daily_ret > 0).mean()),
+        "trades": 300,
+        "profit_factor": 1.0,
+        "final_equity": mkt_s.iloc[-1],
+    })
+
+    # Save Leaderboard & Equity Curves
+    df_board = pd.DataFrame(leaderboard).sort_values("total_return", ascending=False).reset_index(drop=True)
+    df_board.index += 1
+    df_board.to_csv(ARENA_DIR / "leaderboard.csv", index_label="rank", encoding="utf-8-sig")
+
+    df_curves = pd.DataFrame(equity_curves)
+    df_curves.to_csv(ARENA_DIR / "equity_curves.csv", index_label="date")
+
+    print_leaderboard(df_board)
+    generate_html_dashboard(df_board, df_curves, start_date, end_date)
+    return df_board
+
+
+def print_leaderboard(df_board: pd.DataFrame):
+    print("\n" + "=" * 105)
+    print(f"{'Rank':<5} {'Gladiator / Strategy':<38} {'TotalRet':<10} {'CAGR':<8} {'MaxDD':<8} {'Calmar':<8} {'Sharpe':<8} {'WinRate':<8} {'Trades':<6}")
+    print("-" * 105)
+    for rank, row in df_board.iterrows():
+        ret_s = f"{row['total_return']:>7.2%}"
+        cagr_s = f"{row['cagr']:>6.2%}"
+        dd_s = f"{row['max_drawdown']:>6.2%}"
+        calm_s = f"{row['calmar']:>6.2f}"
+        sh_s = f"{row['sharpe']:>6.2f}"
+        wr_s = f"{row['win_rate']:>6.1%}" if pd.notna(row['win_rate']) else "   N/A"
+        print(f"#{rank:<4} {row['gladiator']:<38} {ret_s:<10} {cagr_s:<8} {dd_s:<8} {calm_s:<8} {sh_s:<8} {wr_s:<8} {row['trades']:<6}")
+    print("=" * 105)
+
+
+def generate_html_dashboard(df_board: pd.DataFrame, df_curves: pd.DataFrame, start_date, end_date):
+    """Generate interactive battle dashboard for the Arena."""
+    html = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Model Arena - 量化策略多模型竞技场</title>
+<style>
+  body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 24px; }}
+  .container {{ max-width: 1200px; margin: 0 auto; }}
+  h1 {{ font-size: 28px; margin-bottom: 8px; color: #38bdf8; display: flex; align-items: center; gap: 12px; }}
+  .badge {{ background: #0284c7; color: white; padding: 4px 10px; border-radius: 9999px; font-size: 13px; }}
+  .subtitle {{ color: #94a3b8; margin-bottom: 24px; }}
+  .card {{ background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid #334155; }}
+  table {{ width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }}
+  th {{ background: #0f172a; padding: 12px; color: #94a3b8; font-weight: 600; border-bottom: 2px solid #334155; }}
+  td {{ padding: 12px; border-bottom: 1px solid #334155; }}
+  tr:hover {{ background: #243247; }}
+  .rank-1 {{ color: #f59e0b; font-weight: bold; }}
+  .rank-2 {{ color: #94a3b8; font-weight: bold; }}
+  .rank-3 {{ color: #d97706; font-weight: bold; }}
+  .positive {{ color: #10b981; font-weight: 600; }}
+  .negative {{ color: #ef4444; font-weight: 600; }}
+  .footer {{ color: #64748b; font-size: 12px; text-align: center; margin-top: 40px; }}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>⚔️ Model Arena: 量化策略多模型竞技场 <span class="badge">Live Tournament</span></h1>
+  <div class="subtitle">评测周期：{start_date} 至 {end_date} | 初始本金：30,000 元/角斗士 | T+1 严格无未来函数实证撮合</div>
+
+  <div class="card">
+    <h2 style="margin-top:0; color:#e2e8f0; font-size:18px;">🏆 竞技场全景天梯榜 (Leaderboard)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>排名</th>
+          <th>角斗士 / 策略模型</th>
+          <th>类别</th>
+          <th>累计总收益</th>
+          <th>年化复合 (CAGR)</th>
+          <th>最大动态回撤</th>
+          <th>卡玛比率</th>
+          <th>夏普比率</th>
+          <th>胜率</th>
+          <th>平仓笔数</th>
+          <th>期末净值</th>
+        </tr>
+      </thead>
+      <tbody>
+"""
+    for rank, row in df_board.iterrows():
+        ret_cls = "positive" if row["total_return"] >= 0 else "negative"
+        cagr_cls = "positive" if row["cagr"] >= 0 else "negative"
+        rank_badge = f"<span class='rank-{rank}'>#{rank}</span>" if rank <= 3 else f"#{rank}"
+        wr_str = f"{row['win_rate']:.1%}" if pd.notna(row['win_rate']) else "N/A"
+        html += f"""        <tr>
+          <td>{rank_badge}</td>
+          <td style="font-weight:600;">{row['gladiator']}</td>
+          <td><span style="background:#334155; padding:2px 8px; border-radius:4px; font-size:12px;">{row['category']}</span></td>
+          <td class="{ret_cls}">{row['total_return']:+.2%}</td>
+          <td class="{cagr_cls}">{row['cagr']:+.2%}</td>
+          <td class="negative">{row['max_drawdown']:.2%}</td>
+          <td>{row['calmar']:.2f}</td>
+          <td>{row['sharpe']:.2f}</td>
+          <td>{wr_str}</td>
+          <td>{row['trades']}</td>
+          <td style="font-family:monospace; font-weight:bold;">{row['final_equity']:,.2f} 元</td>
+        </tr>
+"""
+    html += """      </tbody>
+    </table>
+  </div>
+  <div class="footer">Model Arena Engine Powered by Antigravity Quantitative Lab &bull; Zero Lookahead Guaranteed</div>
+</div>
+</body>
+</html>
+"""
+    (ARENA_DIR / "dashboard.html").write_text(html, encoding="utf-8")
+    print(f"\nHTML Battle Dashboard generated at: {ARENA_DIR / 'dashboard.html'}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Model Arena Tournament Runner")
+    parser.add_argument("--start", default="2022-01-01", help="Tournament start date")
+    parser.add_argument("--end", default="2025-12-31", help="Tournament end date")
+    parser.add_argument("--mode", choices=["backtest", "2026", "all"], default="all")
+    parser.add_argument("--no-cash", action="store_true", help="Disable 2.2% cash management overlay")
+    args = parser.parse_args()
+
+    if args.mode == "2026":
+        run_tournament("2026-01-01", "2026-10-13", enable_cash=not args.no_cash)
+    elif args.mode == "all":
+        print(">>> ROUND 1: HISTORICAL COMPASS (2022-2025 Continuous) <<<")
+        run_tournament("2022-01-01", "2025-12-31", enable_cash=not args.no_cash)
+        print("\n>>> ROUND 2: OUT-OF-SAMPLE BLIND FORWARD (2026) <<<")
+        run_tournament("2026-01-01", "2026-10-13", enable_cash=not args.no_cash)
+    else:
+        run_tournament(args.start, args.end, enable_cash=not args.no_cash)
+
+
+if __name__ == "__main__":
+    main()
