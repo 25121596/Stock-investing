@@ -1,0 +1,40 @@
+{
+  "candidate_case": "v087_glm",
+  "cost_basis": "normal (5 bps slippage) unless criterion name says stressed",
+  "criteria": {
+    "p1_return_gt_45pct": {
+      "passed": true,
+      "actual": 0.5692673333333322,
+      "hurdle": 0.45
+    },
+    "p1_maxdd_not_worse_than_-8.32pct": {
+      "passed": true,
+      "actual": -0.05861838395291963,
+      "hurdle": -0.0832
+    },
+    "p2_return_gt_15pct": {
+      "passed": true,
+      "actual": 0.16258266666666654,
+      "hurdle": 0.15
+    },
+    "p2_maxdd_not_worse_than_-3.99pct": {
+      "passed": true,
+      "actual": -0.011964320616106527,
+      "hurdle": -0.0399
+    },
+    "stress_p1_beats_stressed_baseline": {
+      "passed": true,
+      "actual": 0.5446529999999998,
+      "hurdle": "> 0 and > stressed baseline 0.3770"
+    },
+    "stress_p2_beats_stressed_baseline": {
+      "passed": true,
+      "actual": 0.16104200000000013,
+      "hurdle": "> 0 and > stressed baseline 0.1548"
+    }
+  },
+  "overall_pass": true,
+  "pre_registered": true,
+  "registered_at": "2026-10-25 (before any V0.8.7 result was viewed)",
+  "made_by_checkpoint": "GLM"
+}

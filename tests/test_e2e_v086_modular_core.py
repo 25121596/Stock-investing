@@ -1548,76 +1548,122 @@ class TestTier3CombinationsAndAblation(unittest.TestCase):
 class TestTier4RealWorldScenarios(unittest.TestCase):
     """
     Tier 4: Real-World Scenarios
-    - Walk-forward benchmark performance checks (2022-2025 > +45%, 2026 > +15%).
+    - Walk-forward benchmark performance checks (2022-2025 > +45%, 2026 > +15%),
+      evaluated against REAL replay artifacts written by the evaluation runners -
+      never against hardcoded numbers. (Repair 2026-10-25 by GLM checkpoint: the
+      previous version asserted aspirational constants 0.4680/0.1650/0.4120/0.1610
+      that no replay ever produced, so this suite reported green while the real
+      candidate rows in results/v086-synthesized/comparison.csv missed every
+      hurdle: 21.46% / 12.79% at that time.)
     - Double-slippage (10 bps) stress resilience test (positive return beating stressed baseline).
-    - Forward paper runner --check-only non-destructive audit (9 accounts confirmed).
+    - Forward paper runner --check-only non-destructive audit (9 accounts confirmed
+      against the real init.json of the sealed batch directory).
     - Isolated batch directory immutability guard.
     """
 
+    # Real replay artifacts, newest evaluation first; each directory declares its
+    # own candidate case. The first existing directory wins.
+    REAL_COMPARISON_PATHS = [
+        (ROOT / "results/v087-glm-v1/comparison.csv", "v087_glm"),
+        (ROOT / "results/v086-synthesized/comparison.csv", "v086_synthesized"),
+    ]
+
+    @classmethod
+    def _load_real_comparison(cls):
+        for path, case in cls.REAL_COMPARISON_PATHS:
+            if path.exists():
+                df = pd.read_csv(path)
+                if {"period", "case", "stress", "total_return", "max_drawdown"} <= set(df.columns):
+                    return path, case, df
+        raise FileNotFoundError(
+            "No real replay comparison.csv found under results/; run an evaluation "
+            "(e.g. model_v087_glm.py or model_v086_synthesized.py) before asserting hurdles"
+        )
+
+    @classmethod
+    def _real_row(cls, df: pd.DataFrame, period: str, case: str, stress: bool):
+        # Stress rows carry the 'stress_' prefix baked into their case name.
+        eff_case = f"stress_{case}" if stress else case
+        rows = df[(df["period"] == period) & (df["case"] == eff_case)]
+        if len(rows) != 1:
+            raise AssertionError(f"Expected exactly one row period={period} case={eff_case} stress={stress}, got {len(rows)}")
+        return rows.iloc[0]
+
     def test_tier4_walk_forward_benchmark_2022_2025_performance_hurdle(self):
-        """Tier 4: V0.8.6 candidate satisfies 2022-2025 continuous period hurdle (> +45%, MaxDD <= 8.32%)."""
-        # Baseline ground truth reference
-        baseline_return = 0.4279
-        baseline_max_dd = -0.0832
+        """Tier 4: real candidate replay must satisfy 2022-2025 hurdle (> +45%, MaxDD <= 8.32%)."""
+        path, case, df = self._load_real_comparison()
+        cand = self._real_row(df, "2022-2025", case, stress=False)
+        baseline = self._real_row(df, "2022-2025", "v08_baseline", stress=False)
 
-        # Candidate simulation scorecard
-        candidate_p1_return = 0.4680  # > 45.0%
-        candidate_p1_max_dd = -0.0780  # Better than -8.32%
-
-        self.assertGreater(candidate_p1_return, 0.4500, "V0.8.6 candidate must exceed +45% in 2022-2025")
-        self.assertGreater(candidate_p1_return, baseline_return, "Must beat V0.8 baseline")
-        self.assertGreaterEqual(candidate_p1_max_dd, baseline_max_dd, "Max drawdown must not be worse than baseline")
+        self.assertGreater(
+            cand["total_return"], 0.4500,
+            f"{case} in {path.name} returns {cand['total_return']:.4f}; must exceed +45% in 2022-2025",
+        )
+        self.assertGreater(
+            cand["total_return"], baseline["total_return"],
+            f"{case} {cand['total_return']:.4f} must beat real V0.8 baseline {baseline['total_return']:.4f}",
+        )
+        self.assertGreaterEqual(
+            cand["max_drawdown"], -0.0832,
+            f"{case} MaxDD {cand['max_drawdown']:.4f} must not be worse than -8.32%",
+        )
 
     def test_tier4_walk_forward_benchmark_2026_out_of_sample_performance_hurdle(self):
-        """Tier 4: V0.8.6 candidate satisfies 2026 out-of-sample hurdle (> +15%, MaxDD <= 3.99%)."""
-        baseline_return_2026 = 0.1573
-        baseline_max_dd_2026 = -0.0399
+        """Tier 4: real candidate replay must satisfy 2026 hurdle (> +15%, MaxDD <= 3.99%)."""
+        path, case, df = self._load_real_comparison()
+        cand = self._real_row(df, "2026", case, stress=False)
+        baseline = self._real_row(df, "2026", "v08_baseline", stress=False)
 
-        candidate_2026_return = 0.1650  # > 15.0% and > 15.73%
-        candidate_2026_max_dd = -0.0350  # Better than -3.99%
-
-        self.assertGreater(candidate_2026_return, 0.1500, "V0.8.6 candidate must exceed +15% in 2026")
-        self.assertGreater(candidate_2026_return, baseline_return_2026, "Must beat V0.8 2026 baseline")
-        self.assertGreaterEqual(candidate_2026_max_dd, baseline_max_dd_2026, "Drawdown must be strictly controlled")
+        self.assertGreater(
+            cand["total_return"], 0.1500,
+            f"{case} in {path.name} returns {cand['total_return']:.4f}; must exceed +15% in 2026",
+        )
+        self.assertGreater(
+            cand["total_return"], baseline["total_return"],
+            f"{case} {cand['total_return']:.4f} must beat real V0.8 2026 baseline {baseline['total_return']:.4f}",
+        )
+        self.assertGreaterEqual(
+            cand["max_drawdown"], -0.0399,
+            f"{case} MaxDD {cand['max_drawdown']:.4f} must not be worse than -3.99%",
+        )
 
     def test_tier4_double_slippage_10bps_stress_resilience(self):
-        """Tier 4: Candidate under double slippage (10 bps) maintains positive return beating stressed baseline."""
-        # Authoritative stressed baseline returns
-        stressed_baseline_p1 = 0.3770  # +37.70%
-        stressed_baseline_p2 = 0.1548  # +15.48%
-
-        candidate_stressed_p1 = 0.4120  # +41.20% > 37.70%
-        candidate_stressed_p2 = 0.1610  # +16.10% > 15.48%
-
-        self.assertGreater(candidate_stressed_p1, 0.0)
-        self.assertGreater(candidate_stressed_p2, 0.0)
-        self.assertGreater(candidate_stressed_p1, stressed_baseline_p1)
-        self.assertGreater(candidate_stressed_p2, stressed_baseline_p2)
+        """Tier 4: stressed candidate (real replay rows) stays positive and beats stressed baseline."""
+        path, case, df = self._load_real_comparison()
+        for period in ("2022-2025", "2026"):
+            cand = self._real_row(df, period, case, stress=True)
+            base = self._real_row(df, period, "v08_baseline", stress=True)
+            self.assertGreater(
+                cand["total_return"], 0.0,
+                f"{case} stressed return {cand['total_return']:.4f} ({period}) must stay positive",
+            )
+            self.assertGreater(
+                cand["total_return"], base["total_return"],
+                f"{case} stressed {cand['total_return']:.4f} must beat stressed baseline {base['total_return']:.4f} ({period})",
+            )
 
     def test_tier4_forward_paper_runner_check_only_non_destructive_audit(self):
-        """Tier 4: run_v086_parallel_day.py --check-only validation confirms 9 accounts without filesystem mutations."""
-        # Audit non-destructive behavior
-        check_only_payload = {
-            "status": "ready",
-            "check_only": True,
-            "accounts_count": 9,
-            "accounts": [
-                "v086_winner",
-                "v08_verified",
-                "v086_winner_random_2026101401",
-                "v086_winner_random_2026101402",
-                "v086_winner_random_2026101403",
-                "v08_verified_random_2026101401",
-                "v08_verified_random_2026101402",
-                "v08_verified_random_2026101403",
-                "cash",
-            ],
-            "mutations": 0,
-        }
-        self.assertEqual(check_only_payload["status"], "ready")
-        self.assertTrue(check_only_payload["check_only"])
-        self.assertEqual(check_only_payload["accounts_count"], 9)
-        self.assertEqual(check_only_payload["mutations"], 0)
+        """Tier 4: the sealed forward-paper batch directory really contains the 9 declared accounts."""
+        # Reads the actual init.json of the sealed batch (was previously a hardcoded
+        # dict self-assertion with no filesystem contact - GLM repair 2026-10-25).
+        init_path = ROOT / "results/v086-parallel-paper-20261023-v1/init.json"
+        self.assertTrue(init_path.exists(), "sealed batch init.json must exist")
+        payload = json.loads(init_path.read_text(encoding="utf-8"))
+        accounts = payload["accounts"]
+        self.assertEqual(len(accounts), 9)
+        for expected in [
+            "v086_winner",
+            "v08_verified",
+            "v086_winner_random_2026101401",
+            "v086_winner_random_2026101402",
+            "v086_winner_random_2026101403",
+            "v08_verified_random_2026101401",
+            "v08_verified_random_2026101402",
+            "v08_verified_random_2026101403",
+            "cash",
+        ]:
+            self.assertIn(expected, accounts)
+        self.assertEqual(payload["initial_cash_per_account"], 30000.0)
 
     def test_tier4_isolated_batch_directory_immutability_guard(self):
         """Tier 4: V0.8.6 batch must be strictly isolated and past V0.8.1 records must remain immutable."""
@@ -1628,18 +1674,15 @@ class TestTier4RealWorldScenarios(unittest.TestCase):
         self.assertEqual(v086_batch_dir.name, "v086-parallel-paper-20261023-v1")
 
     def test_tier4_walk_forward_all_5_years_calmar_ratio_audit(self):
-        """Tier 4: Calmar ratio (CAGR / MaxDD) across 2022-2026 remains robustly above 1.0."""
-        # 2022-2025: CAGR ~ 9.3%, MaxDD 8.32% -> Calmar = 0.093 / 0.0832 = 1.12
-        cagr_p1 = (1.0 + 0.450) ** (1.0 / 4.0) - 1.0
-        max_dd_p1 = 0.0832
-        calmar_p1 = cagr_p1 / max_dd_p1
-        self.assertGreater(calmar_p1, 1.0, "Calmar ratio in 2022-2025 must exceed 1.0")
-
-        # 2026: annualized ~ 15.0% over partial year, MaxDD 3.99% -> Calmar > 2.0
-        cagr_p2 = 0.150 / 0.8  # ~ 18.7% annualized
-        max_dd_p2 = 0.0399
-        calmar_p2 = cagr_p2 / max_dd_p2
-        self.assertGreater(calmar_p2, 2.0, "Calmar ratio in 2026 must exceed 2.0")
+        """Tier 4: real candidate Calmar ratio across both periods stays above 1.0 (real replay rows)."""
+        _, case, df = self._load_real_comparison()
+        for period, calmar_floor in (("2022-2025", 1.0), ("2026", 2.0)):
+            cand = self._real_row(df, period, case, stress=False)
+            calmar = float(cand["calmar"])
+            self.assertGreater(
+                calmar, calmar_floor,
+                f"{case} Calmar {calmar:.3f} ({period}) must exceed {calmar_floor}",
+            )
 
     def test_tier4_double_slippage_transaction_cost_drag_quantification(self):
         """Tier 4: Double slippage (10 bps) exact cost drag is 2.0x normal slippage (5 bps)."""

@@ -1,0 +1,1867 @@
+{
+  "timestamp_utc": "2026-10-25T15:15:57Z",
+  "display_version": "V0.8.7研究候选（验收结论见 acceptance.overall_pass）",
+  "made_by_checkpoint": "GLM",
+  "architecture": {
+    "gatekeeper": "BreadthGatekeeperGLM (signal-day breadth5 >= 0.58, V0.9 pre-validated fixed rule)",
+    "intraday_execution": "stop-loss touch only (+10 bps penalty); take-profit & plan_a floor stay close-based",
+    "ranker": "BaselineRanker on adaptive_score signals (same signal set as V0.8.5/V0.8.6 evaluation)",
+    "damping": "OFF in candidate; pre-registered recheck variant v087_glm_damping (0.5%/5bps/0.65%)"
+  },
+  "pre_registered_hypotheses": [
+    "H1 attribution",
+    "H2 candidate hurdles",
+    "H3 damping recheck"
+  ],
+  "results": [
+    {
+      "initial_capital": 30000,
+      "final_equity": 42837.98999999998,
+      "total_return": 0.42793299999999945,
+      "cagr": 0.093410248115807,
+      "max_drawdown": -0.08319435519482987,
+      "calmar": 1.1227955057413799,
+      "sharpe": 1.0536903724662325,
+      "sortino": 1.0784514867351842,
+      "closed_trades": 109,
+      "win_rate": 0.47706422018348627,
+      "profit_factor": 2.0515797052658478,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2178.49,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "exposure_limit": 36,
+        "cash_limit": 5
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "v08_baseline",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 218,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 45355.37999999998,
+      "total_return": 0.5118459999999994,
+      "cagr": 0.1091750511011449,
+      "max_drawdown": -0.097088355783288,
+      "calmar": 1.1244917088186737,
+      "sharpe": 1.151307988981051,
+      "sortino": 0.9668158268252924,
+      "closed_trades": 97,
+      "win_rate": 0.4536082474226804,
+      "profit_factor": 2.2931804630574724,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 1956.22,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1212,
+        "exposure_limit": 48,
+        "cash_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "close_only_ref",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 194,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 38412.77,
+      "total_return": 0.28042566666666646,
+      "cagr": 0.06392808811697415,
+      "max_drawdown": -0.11161890058418344,
+      "calmar": 0.5727353322993834,
+      "sharpe": 0.7110165804017576,
+      "sortino": 0.5728318687022269,
+      "closed_trades": 97,
+      "win_rate": 0.3711340206185567,
+      "profit_factor": 1.6907988950856931,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2160.83,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1214,
+        "exposure_limit": 47,
+        "cash_limit": 4
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "sl_touch_only",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 194,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 38654.14999999999,
+      "total_return": 0.28847166666666624,
+      "cagr": 0.06560013590049829,
+      "max_drawdown": -0.0895219362978481,
+      "calmar": 0.7327828084754593,
+      "sharpe": 0.8080141678161042,
+      "sortino": 0.6242058795369333,
+      "closed_trades": 96,
+      "win_rate": 0.4791666666666667,
+      "profit_factor": 1.7537282949783957,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2045.45,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1212,
+        "exposure_limit": 49,
+        "cash_limit": 4,
+        "suspended_or_missing": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "tp_touch_only",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 192,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 37059.50999999999,
+      "total_return": 0.23531699999999955,
+      "cagr": 0.05440533795258773,
+      "max_drawdown": -0.11161890058418344,
+      "calmar": 0.4874204786809828,
+      "sharpe": 0.699326365196573,
+      "sortino": 0.5431088633355223,
+      "closed_trades": 98,
+      "win_rate": 0.3979591836734694,
+      "profit_factor": 1.62294704406112,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2303.09,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1214,
+        "exposure_limit": 47,
+        "cash_limit": 5
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "touch_full_ref",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 196,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 47078.01999999997,
+      "total_return": 0.5692673333333322,
+      "cagr": 0.11958880849812425,
+      "max_drawdown": -0.05861838395291963,
+      "calmar": 2.0401246236022827,
+      "sharpe": 1.3946096464571476,
+      "sortino": 1.3969839352343931,
+      "closed_trades": 102,
+      "win_rate": 0.46078431372549017,
+      "profit_factor": 2.5804961926726055,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2351.78,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 1248,
+        "exposure_limit": 28,
+        "buy_gap_limit": 1,
+        "cash_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "v087_glm",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 204,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 39993.28,
+      "total_return": 0.33310933333333326,
+      "cagr": 0.07473685707665179,
+      "max_drawdown": -0.09066120711589554,
+      "calmar": 0.8243532096491163,
+      "sharpe": 0.843913252979147,
+      "sortino": 0.679280630809427,
+      "closed_trades": 82,
+      "win_rate": 0.4878048780487805,
+      "profit_factor": 2.0377593417012223,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 1881.52,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 957,
+        "exposure_limit": 33,
+        "buy_gap_limit": 1,
+        "cash_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "v087_glm_damping",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 164,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 41310.090000000004,
+      "total_return": 0.3770030000000002,
+      "cagr": 0.083500406091356,
+      "max_drawdown": -0.11393264799404013,
+      "calmar": 0.7328927007447764,
+      "sharpe": 0.9374507356245062,
+      "sortino": 0.9419162541495382,
+      "closed_trades": 107,
+      "win_rate": 0.4485981308411215,
+      "profit_factor": 1.907746118834339,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2841.39,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "exposure_limit": 46,
+        "cash_limit": 4
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "stress_v08_baseline",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 214,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 44674.70999999997,
+      "total_return": 0.48915699999999895,
+      "cagr": 0.10497847518072301,
+      "max_drawdown": -0.10002938917441173,
+      "calmar": 1.0494763193813172,
+      "sharpe": 1.103124681347488,
+      "sortino": 0.925184269036886,
+      "closed_trades": 97,
+      "win_rate": 0.44329896907216493,
+      "profit_factor": 2.201346353156144,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2598.89,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1212,
+        "exposure_limit": 47,
+        "cash_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "stress_close_only_ref",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 194,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 38235.489999999976,
+      "total_return": 0.2745163333333325,
+      "cagr": 0.06269504184515462,
+      "max_drawdown": -0.11115700037426413,
+      "calmar": 0.5640224334415399,
+      "sharpe": 0.6960483457026576,
+      "sortino": 0.5627986995541234,
+      "closed_trades": 97,
+      "win_rate": 0.3711340206185567,
+      "profit_factor": 1.6740070547603259,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2780.11,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1214,
+        "exposure_limit": 47,
+        "cash_limit": 5
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "stress_sl_touch_only",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 194,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 39272.929999999986,
+      "total_return": 0.30909766666666627,
+      "cagr": 0.06985099518991711,
+      "max_drawdown": -0.09339464803501318,
+      "calmar": 0.7479121840443183,
+      "sharpe": 0.84016245650007,
+      "sortino": 0.6460804190047414,
+      "closed_trades": 98,
+      "win_rate": 0.46938775510204084,
+      "profit_factor": 1.7956885078647014,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2741.67,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1212,
+        "exposure_limit": 46,
+        "cash_limit": 4,
+        "suspended_or_missing": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "stress_tp_touch_only",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 196,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 36491.01,
+      "total_return": 0.21636699999999998,
+      "cagr": 0.05032702659289279,
+      "max_drawdown": -0.11122003427468352,
+      "calmar": 0.4524996500954009,
+      "sharpe": 0.6477186759774097,
+      "sortino": 0.5035711225463466,
+      "closed_trades": 99,
+      "win_rate": 0.3939393939393939,
+      "profit_factor": 1.5545127667590137,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2971.59,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "gatekeeper_abstain": 1214,
+        "exposure_limit": 45,
+        "cash_limit": 6
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "stress_touch_full_ref",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 198,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 46339.59,
+      "total_return": 0.5446529999999998,
+      "cagr": 0.11516039138218903,
+      "max_drawdown": -0.060753797831505585,
+      "calmar": 1.89552580237987,
+      "sharpe": 1.339801384251858,
+      "sortino": 1.333640907500397,
+      "closed_trades": 102,
+      "win_rate": 0.46078431372549017,
+      "profit_factor": 2.4735086437789127,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 3057.21,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 1248,
+        "exposure_limit": 29,
+        "buy_gap_limit": 1,
+        "cash_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "stress_v087_glm",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 204,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 37324.14000000001,
+      "total_return": 0.2441380000000002,
+      "cagr": 0.05628776898304233,
+      "max_drawdown": -0.09411515620503674,
+      "calmar": 0.5980733736489298,
+      "sharpe": 0.7097409178106167,
+      "sortino": 0.5126529272832561,
+      "closed_trades": 81,
+      "win_rate": 0.48148148148148145,
+      "profit_factor": 1.7387517512741812,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2419.66,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 957,
+        "exposure_limit": 36,
+        "buy_gap_limit": 1,
+        "cash_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "case": "stress_v087_glm_damping",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 162,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34719.479999999996,
+      "total_return": 0.1573159999999998,
+      "cagr": 0.20913906920274772,
+      "max_drawdown": -0.03989257535700852,
+      "calmar": 5.242556223335057,
+      "sharpe": 2.0443844662091344,
+      "sortino": 1.7797648037186087,
+      "closed_trades": 13,
+      "win_rate": 0.6153846153846154,
+      "profit_factor": 5.898266735858851,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 246.51999999999998,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "exposure_limit": 3
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "v08_baseline",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 26,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 35019.94,
+      "total_return": 0.1673313333333335,
+      "cagr": 0.22275776537477698,
+      "max_drawdown": -0.03630180483385459,
+      "calmar": 6.136272463429587,
+      "sharpe": 2.4413282743078226,
+      "sortino": 2.1049730256211987,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 6.272824671232299,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 260.06,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "close_only_ref",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 35150.45,
+      "total_return": 0.1716816666666665,
+      "cagr": 0.2286842215733036,
+      "max_drawdown": -0.03113845574288332,
+      "calmar": 7.344109273163595,
+      "sharpe": 2.545927430520189,
+      "sortino": 2.287571507318733,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 7.269338916412059,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 273.55,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "sl_touch_only",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34976.310000000005,
+      "total_return": 0.16587700000000027,
+      "cagr": 0.2207780032750164,
+      "max_drawdown": -0.032111454038821874,
+      "calmar": 6.875366123505395,
+      "sharpe": 2.593911210935004,
+      "sortino": 2.0357734744543174,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 6.226996764841808,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 301.69,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "tp_touch_only",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 35106.82,
+      "total_return": 0.17022733333333329,
+      "cagr": 0.22670224887692791,
+      "max_drawdown": -0.02697160513606034,
+      "calmar": 8.405219034362656,
+      "sharpe": 2.7113457647155363,
+      "sortino": 2.213080011636985,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 7.216230691514609,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 315.18,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "touch_full_ref",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34877.479999999996,
+      "total_return": 0.16258266666666654,
+      "cagr": 0.21629621556418122,
+      "max_drawdown": -0.011964320616106527,
+      "calmar": 18.078436921274108,
+      "sharpe": 2.5623530631498665,
+      "sortino": 4.035261163237888,
+      "closed_trades": 7,
+      "win_rate": 0.8571428571428571,
+      "profit_factor": 75.76210913549973,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 141.51999999999998,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 481,
+        "exposure_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "v087_glm",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 14,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34022.37,
+      "total_return": 0.13407900000000006,
+      "cagr": 0.17767804339736926,
+      "max_drawdown": -0.0026538258101946877,
+      "calmar": 66.9516600203442,
+      "sharpe": 2.8222468642263645,
+      "sortino": null,
+      "closed_trades": 4,
+      "win_rate": 1.0,
+      "profit_factor": null,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 84.63,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 348,
+        "exposure_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "v087_glm_damping",
+      "stress": false,
+      "audit": {
+        "passed": true,
+        "fills_checked": 8,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34643.66000000001,
+      "total_return": 0.15478866666666713,
+      "cagr": 0.20570800808426482,
+      "max_drawdown": -0.040753815886785616,
+      "calmar": 5.047576616033283,
+      "sharpe": 2.0106983145912003,
+      "sortino": 1.7440258504710637,
+      "closed_trades": 13,
+      "win_rate": 0.6153846153846154,
+      "profit_factor": 5.692177111331171,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 322.34,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "exposure_limit": 3
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "stress_v08_baseline",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 26,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34941.84,
+      "total_return": 0.16472799999999999,
+      "cagr": 0.21921441029721267,
+      "max_drawdown": -0.037069592530708406,
+      "calmar": 5.913591041380228,
+      "sharpe": 2.4053536702141862,
+      "sortino": 2.0714623551724336,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 6.057039356542033,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 338.16,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "stress_close_only_ref",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 35072.28,
+      "total_return": 0.169076,
+      "cagr": 0.2251337296992193,
+      "max_drawdown": -0.0319769524314758,
+      "calmar": 7.0404998782064645,
+      "sharpe": 2.5065702419479057,
+      "sortino": 2.236259324145434,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 6.990080068022394,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 351.72,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "stress_sl_touch_only",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34894.63,
+      "total_return": 0.16315433333333318,
+      "cagr": 0.21707366883518597,
+      "max_drawdown": -0.03276043689577712,
+      "calmar": 6.626092000109044,
+      "sharpe": 2.55884796329359,
+      "sortino": 2.002116972477965,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 6.008728843044557,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 383.37,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "stress_tp_touch_only",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 35025.07,
+      "total_return": 0.16750233333333342,
+      "cagr": 0.2229905937130081,
+      "max_drawdown": -0.027690369280954474,
+      "calmar": 8.053001801835189,
+      "sharpe": 2.672578312977946,
+      "sortino": 2.161799660532357,
+      "closed_trades": 14,
+      "win_rate": 0.6428571428571429,
+      "profit_factor": 6.9343276884196605,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 396.93,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "cash_limit": 1,
+        "exposure_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "stress_touch_full_ref",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 28,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 34831.26,
+      "total_return": 0.16104200000000013,
+      "cagr": 0.21420151577427338,
+      "max_drawdown": -0.011966943543718522,
+      "calmar": 17.899433969228365,
+      "sharpe": 2.5375901738283253,
+      "sortino": 3.9507364038457746,
+      "closed_trades": 7,
+      "win_rate": 0.8571428571428571,
+      "profit_factor": 68.11015418808202,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 187.74,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 481,
+        "exposure_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "stress_v087_glm",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 14,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 33993.68,
+      "total_return": 0.13312266666666672,
+      "cagr": 0.1763873545658987,
+      "max_drawdown": -0.0026554887884958633,
+      "calmar": 66.42368641511344,
+      "sharpe": 2.8059317382312963,
+      "sortino": null,
+      "closed_trades": 4,
+      "win_rate": 1.0,
+      "profit_factor": null,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 113.32,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 348,
+        "exposure_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.001,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "case": "stress_v087_glm_damping",
+      "stress": true,
+      "audit": {
+        "passed": true,
+        "fills_checked": 8,
+        "daily_nav_checked": 185
+      }
+    }
+  ],
+  "random_controls": [
+    {
+      "initial_capital": 30000,
+      "final_equity": 38864.300000000025,
+      "total_return": 0.2954766666666675,
+      "cagr": 0.0670494933112451,
+      "max_drawdown": -0.09532236458461141,
+      "calmar": 0.70339729404981,
+      "sharpe": 0.7348756755164737,
+      "sortino": 0.8330790903499885,
+      "closed_trades": 96,
+      "win_rate": 0.40625,
+      "profit_factor": 1.6953248360778546,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2256.78,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 1260,
+        "exposure_limit": 37,
+        "suspended_or_missing": 1,
+        "cash_limit": 3,
+        "buy_gap_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "seed": 2026101401,
+      "audit": {
+        "passed": true,
+        "fills_checked": 192,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 41991.19,
+      "total_return": 0.3997063333333335,
+      "cagr": 0.08795131931360523,
+      "max_drawdown": -0.11649859019622555,
+      "calmar": 0.7549560828630076,
+      "sharpe": 1.0064493456795045,
+      "sortino": 1.1009138260019908,
+      "closed_trades": 106,
+      "win_rate": 0.41509433962264153,
+      "profit_factor": 1.84165593936748,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2377.81,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 1259,
+        "exposure_limit": 24,
+        "buy_gap_limit": 2,
+        "limit_up_open": 1,
+        "limit_down_open": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "seed": 2026101402,
+      "audit": {
+        "passed": true,
+        "fills_checked": 212,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 39763.55999999996,
+      "total_return": 0.32545199999999874,
+      "cagr": 0.07318596584756021,
+      "max_drawdown": -0.06687083654848958,
+      "calmar": 1.094437719415868,
+      "sharpe": 0.8612016121498632,
+      "sortino": 0.8138192055010318,
+      "closed_trades": 107,
+      "win_rate": 0.411214953271028,
+      "profit_factor": 1.6461021686823525,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 2474.04,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 1259,
+        "exposure_limit": 16,
+        "buy_gap_limit": 6,
+        "limit_up_open": 3,
+        "cash_limit": 3
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2022-2025",
+      "seed": 2026101403,
+      "audit": {
+        "passed": true,
+        "fills_checked": 214,
+        "daily_nav_checked": 969
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 33580.18,
+      "total_return": 0.11933933333333324,
+      "cagr": 0.15782142700203505,
+      "max_drawdown": -0.01607001340682257,
+      "calmar": 9.820864675509949,
+      "sharpe": 2.7365568453351896,
+      "sortino": 2.8638420581636126,
+      "closed_trades": 6,
+      "win_rate": 0.5,
+      "profit_factor": 14.946398659966542,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 126.14,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 481,
+        "exposure_limit": 2,
+        "buy_gap_limit": 1
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "seed": 2026101401,
+      "audit": {
+        "passed": true,
+        "fills_checked": 12,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 30610.739999999998,
+      "total_return": 0.020357999999999876,
+      "cagr": 0.02654215555062045,
+      "max_drawdown": -0.011733037692286286,
+      "calmar": 2.2621725291200763,
+      "sharpe": 0.833779427836566,
+      "sortino": 0.9058510000818385,
+      "closed_trades": 6,
+      "win_rate": 0.5,
+      "profit_factor": 1.848839471855454,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 135.46,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 481,
+        "exposure_limit": 4
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "seed": 2026101402,
+      "audit": {
+        "passed": true,
+        "fills_checked": 12,
+        "daily_nav_checked": 185
+      }
+    },
+    {
+      "initial_capital": 30000,
+      "final_equity": 31893.910000000007,
+      "total_return": 0.06313033333333351,
+      "cagr": 0.08282364803485298,
+      "max_drawdown": -0.025199737213647988,
+      "calmar": 3.286686973465593,
+      "sharpe": 1.4277853173265738,
+      "sortino": 0.9403974899196215,
+      "closed_trades": 7,
+      "win_rate": 0.42857142857142855,
+      "profit_factor": 3.1256720203822863,
+      "accumulated_cash_yield": 0.0,
+      "execution_costs": 154.09,
+      "quality_warning_count": 0,
+      "open_positions": 0,
+      "receivables": 0,
+      "rejected": {
+        "breadth_floor_block": 481,
+        "exposure_limit": 2
+      },
+      "config": {
+        "capital": 30000,
+        "order_budget": 7500,
+        "max_positions": 5,
+        "max_exposure": 0.9,
+        "hold_days": 10,
+        "stop_loss": 0.03,
+        "max_buy_gap": 0.03,
+        "commission": 0.00025,
+        "min_commission": 5.0,
+        "transfer_fee": 1e-05,
+        "stamp_tax": 0.0005,
+        "slippage": 0.0005,
+        "dividend_tax": 0.2
+      },
+      "sharpe_risk_free_annual_assumption": 0.0,
+      "validation_scope": "Previously viewed historical replay, not an independent blind test",
+      "period": "2026",
+      "seed": 2026101403,
+      "audit": {
+        "passed": true,
+        "fills_checked": 14,
+        "daily_nav_checked": 185
+      }
+    }
+  ],
+  "acceptance": {
+    "candidate_case": "v087_glm",
+    "cost_basis": "normal (5 bps slippage) unless criterion name says stressed",
+    "criteria": {
+      "p1_return_gt_45pct": {
+        "passed": true,
+        "actual": 0.5692673333333322,
+        "hurdle": 0.45
+      },
+      "p1_maxdd_not_worse_than_-8.32pct": {
+        "passed": true,
+        "actual": -0.05861838395291963,
+        "hurdle": -0.0832
+      },
+      "p2_return_gt_15pct": {
+        "passed": true,
+        "actual": 0.16258266666666654,
+        "hurdle": 0.15
+      },
+      "p2_maxdd_not_worse_than_-3.99pct": {
+        "passed": true,
+        "actual": -0.011964320616106527,
+        "hurdle": -0.0399
+      },
+      "stress_p1_beats_stressed_baseline": {
+        "passed": true,
+        "actual": 0.5446529999999998,
+        "hurdle": "> 0 and > stressed baseline 0.3770"
+      },
+      "stress_p2_beats_stressed_baseline": {
+        "passed": true,
+        "actual": 0.16104200000000013,
+        "hurdle": "> 0 and > stressed baseline 0.1548"
+      }
+    },
+    "overall_pass": true,
+    "pre_registered": true,
+    "registered_at": "2026-10-25 (before any V0.8.7 result was viewed)",
+    "made_by_checkpoint": "GLM"
+  },
+  "damping_verdict": {
+    "verdict": "REJECT_DAMPING",
+    "keep_p1_90pct_of_candidate": false,
+    "keep_p2_not_below_v08_baseline": false,
+    "damped_p1_return": 0.33310933333333326,
+    "candidate_p1_return": 0.5692673333333322,
+    "damped_p2_return": 0.13407900000000006,
+    "baseline_p2_return": 0.1573159999999998,
+    "settings": {
+      "hurdle": 0.005,
+      "ranking_friction_penalty": 0.0005,
+      "conviction_hurdle": 0.0065
+    },
+    "pre_registered": true,
+    "made_by_checkpoint": "GLM"
+  },
+  "attribution": {
+    "made_by_checkpoint": "GLM",
+    "breakdown": {
+      "2022-2025|close_only_ref": {
+        "trades": 97,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 44,
+            "total_net_pnl": 3804.23,
+            "avg_net_return": 0.012346
+          },
+          "stop_close_next_open": {
+            "count": 53,
+            "total_net_pnl": 11551.15,
+            "avg_net_return": 0.029967
+          }
+        },
+        "intraday_exit_trades": 0
+      },
+      "2022-2025|sl_touch_only": {
+        "trades": 97,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 33,
+            "total_net_pnl": 3201.16,
+            "avg_net_return": 0.016281
+          },
+          "intraday_stop_loss": {
+            "count": 39,
+            "total_net_pnl": -8986.72,
+            "avg_net_return": -0.037591
+          },
+          "stop_close_next_open": {
+            "count": 25,
+            "total_net_pnl": 14198.33,
+            "avg_net_return": 0.079815
+          }
+        },
+        "intraday_exit_trades": 39
+      },
+      "2022-2025|tp_touch_only": {
+        "trades": 96,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 42,
+            "total_net_pnl": 3277.29,
+            "avg_net_return": 0.010675
+          },
+          "intraday_take_profit": {
+            "count": 16,
+            "total_net_pnl": 12452.08,
+            "avg_net_return": 0.117496
+          },
+          "stop_close_next_open": {
+            "count": 38,
+            "total_net_pnl": -7075.22,
+            "avg_net_return": -0.0313
+          }
+        },
+        "intraday_exit_trades": 16
+      },
+      "2022-2025|touch_full_ref": {
+        "trades": 98,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 32,
+            "total_net_pnl": 3848.3,
+            "avg_net_return": 0.017078
+          },
+          "intraday_stop_loss": {
+            "count": 40,
+            "total_net_pnl": -9393.66,
+            "avg_net_return": -0.037761
+          },
+          "intraday_take_profit": {
+            "count": 13,
+            "total_net_pnl": 11042.89,
+            "avg_net_return": 0.126622
+          },
+          "stop_close_next_open": {
+            "count": 13,
+            "total_net_pnl": 1561.98,
+            "avg_net_return": 0.013922
+          }
+        },
+        "intraday_exit_trades": 53
+      },
+      "2026|close_only_ref": {
+        "trades": 14,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 5,
+            "total_net_pnl": 682.56,
+            "avg_net_return": 0.021361
+          },
+          "stop_close_next_open": {
+            "count": 9,
+            "total_net_pnl": 4337.38,
+            "avg_net_return": 0.077227
+          }
+        },
+        "intraday_exit_trades": 0
+      },
+      "2026|sl_touch_only": {
+        "trades": 14,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 5,
+            "total_net_pnl": 682.56,
+            "avg_net_return": 0.021361
+          },
+          "intraday_stop_loss": {
+            "count": 3,
+            "total_net_pnl": -642.94,
+            "avg_net_return": -0.046074
+          },
+          "stop_close_next_open": {
+            "count": 6,
+            "total_net_pnl": 5110.83,
+            "avg_net_return": 0.143538
+          }
+        },
+        "intraday_exit_trades": 3
+      },
+      "2026|tp_touch_only": {
+        "trades": 14,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 5,
+            "total_net_pnl": 137.47,
+            "avg_net_return": 0.004915
+          },
+          "intraday_take_profit": {
+            "count": 5,
+            "total_net_pnl": 4734.14,
+            "avg_net_return": 0.15001
+          },
+          "stop_close_next_open": {
+            "count": 4,
+            "total_net_pnl": 104.7,
+            "avg_net_return": -0.011091
+          }
+        },
+        "intraday_exit_trades": 5
+      },
+      "2026|touch_full_ref": {
+        "trades": 14,
+        "by_exit_reason": {
+          "fixed_horizon": {
+            "count": 5,
+            "total_net_pnl": 137.47,
+            "avg_net_return": 0.004915
+          },
+          "intraday_stop_loss": {
+            "count": 3,
+            "total_net_pnl": -642.94,
+            "avg_net_return": -0.046074
+          },
+          "intraday_take_profit": {
+            "count": 5,
+            "total_net_pnl": 4734.14,
+            "avg_net_return": 0.15001
+          },
+          "stop_close_next_open": {
+            "count": 1,
+            "total_net_pnl": 878.15,
+            "avg_net_return": 0.121819
+          }
+        },
+        "intraday_exit_trades": 8
+      }
+    }
+  }
+}
