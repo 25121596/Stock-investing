@@ -1,0 +1,6 @@
+{
+  "display_version": "V0.8.8-Gemini研究模型",
+  "made_by_checkpoint": "Gemini",
+  "acceptance_pass": true,
+  "note": "V0.8.8模型由 Gemini 检查点自主完成大型改造，验收以 acceptance.json 真实回放数字为准。"
+}

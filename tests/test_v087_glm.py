@@ -159,6 +159,36 @@ class TestTouchModeStoppingGLMSLMode(unittest.TestCase):
         self.assertAlmostEqual(decision.target_price, 9.50, places=6)
 
 
+class TestTouchModeStoppingGLMAdversarialBars(unittest.TestCase):
+    """Adversarial data-quality bars must never trigger an intraday exit."""
+
+    def setUp(self):
+        self.stopping = TouchModeStoppingGLM(intraday_mode="sl")
+
+    def test_suspended_bar_tradestatus_zero_rejected(self):
+        bar = make_bar(9.50, 9.40, 9.30, 9.35)
+        bar["tradestatus"] = 0
+        decision = self.stopping.check_intraday_touch(make_position(), bar, make_context())
+        self.assertFalse(decision.should_exit)
+
+    def test_zero_volume_bar_rejected(self):
+        bar = make_bar(9.50, 9.40, 9.30, 9.35)
+        bar["volume"] = 0.0
+        decision = self.stopping.check_intraday_touch(make_position(), bar, make_context())
+        self.assertFalse(decision.should_exit)
+
+    def test_missing_bar_rejected(self):
+        decision = self.stopping.check_intraday_touch(make_position(), None, make_context())
+        self.assertFalse(decision.should_exit)
+
+    def test_stop_loss_just_above_line_not_triggered(self):
+        # eff_sl = 2.8% -> p_sl = 9.72; low 9.73 stays one tick above the line
+        decision = self.stopping.check_intraday_touch(
+            make_position(), make_bar(10.0, 10.05, 9.73, 9.90), make_context()
+        )
+        self.assertFalse(decision.should_exit)
+
+
 class TestTouchModeStoppingGLMTPAndAllModes(unittest.TestCase):
     def test_tp_mode_fires_take_profit_with_prefix(self):
         stopping = TouchModeStoppingGLM(intraday_mode="tp")

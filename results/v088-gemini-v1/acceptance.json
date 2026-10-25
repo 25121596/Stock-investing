@@ -1,0 +1,55 @@
+{
+  "candidate_case": "v088_gemini",
+  "cost_basis": "normal (5 bps slippage) unless criterion name says stressed (10 bps)",
+  "criteria": {
+    "p1_trades_expansion": {
+      "passed": true,
+      "actual": 130,
+      "hurdle": ">= 120"
+    },
+    "p2_trades_expansion": {
+      "passed": true,
+      "actual": 16,
+      "hurdle": ">= 14"
+    },
+    "p1_return_expansion": {
+      "passed": true,
+      "actual": 0.6849233333333336,
+      "hurdle": ">= 0.6000"
+    },
+    "p2_return_preservation": {
+      "passed": true,
+      "actual": 0.1510410000000002,
+      "hurdle": ">= 0.1450"
+    },
+    "p1_maxdd_safety": {
+      "passed": true,
+      "actual": -0.08477575723086672,
+      "hurdle": ">= -0.1000"
+    },
+    "p2_maxdd_safety": {
+      "passed": true,
+      "actual": -0.0263113920499658,
+      "hurdle": ">= -0.0399"
+    },
+    "stress_p1_beats_stressed_glm": {
+      "passed": true,
+      "actual": 0.6531606666666665,
+      "hurdle": "> stressed GLM 0.5447"
+    },
+    "stress_p2_return_hurdle": {
+      "passed": true,
+      "actual": 0.15087066666666704,
+      "hurdle": ">= 0.1400"
+    },
+    "balance_sheet_conservation": {
+      "passed": true,
+      "actual": "100% passed",
+      "hurdle": "|NAV - (Cash + Recv + PosVal)| < 1e-6"
+    }
+  },
+  "overall_pass": true,
+  "pre_registered": true,
+  "registered_at": "2026-10-26 (V0.8.8-Gemini pre-registration)",
+  "made_by_checkpoint": "Gemini"
+}

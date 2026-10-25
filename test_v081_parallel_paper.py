@@ -1,5 +1,5 @@
 """Synthetic invariants for the independent V0.8.1 parallel paper batch."""
-from datetime import datetime as RealDateTime
+from datetime import date, datetime as RealDateTime, timedelta
 import json
 from pathlib import Path
 import sys
@@ -348,14 +348,18 @@ class ParallelIntegrityTests(unittest.TestCase):
                 paper.initialize(session)
                 init = paper.read_json(session / 'init.json')
                 day = init['prospective_start_not_before']
-                following = '2026-10-23'
+                # Date-independent synthetic calendar: the batch's own start day plus one
+                # verified following session three days later. The previous hard-coded
+                # 2026-10-21..23 calendar only passed when the test happened to run on
+                # one of those dates. (GLM repair 2026-10-25)
+                following = (date.fromisoformat(day) + timedelta(days=3)).isoformat()
                 folder = session / 'days' / day
                 (folder / 'input-snapshot').mkdir(parents=True)
                 (folder / 'input-snapshot/exchange-calendar.csv').write_text(
-                    'calendar_date,is_trading_day\n2026-10-21,1\n2026-10-22,1\n2026-10-23,1\n', encoding='utf-8')
+                    f'calendar_date,is_trading_day\n{day},1\n{following},1\n', encoding='utf-8')
                 (folder / 'signals.csv').write_text('account,code,score\nv08_verified,sh.600006,1.0\n', encoding='utf-8')
                 record = {'signal_date': day, 'execution_date': following,
-                    'sealed_beijing': '2026-10-22T16:00:00+08:00',
+                    'sealed_beijing': f'{day}T16:00:00+08:00',
                     'previous_record_sha256': paper.digest(session / 'init.json'),
                     'account_ids': list(init['accounts']), 'prospective_record': True}
                 record['files'] = paper.file_hashes(folder)
