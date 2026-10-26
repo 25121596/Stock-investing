@@ -1,0 +1,106 @@
+{
+  "V0.8.9-AutoSweep (Base Compounding)_2022-2025": {
+    "model": "V0.8.9-AutoSweep (Base Compounding)",
+    "period": "2022-2025",
+    "total_return": 0.9820696793990358,
+    "max_drawdown": -0.07957986171363385,
+    "sharpe": 1.816134626022942,
+    "calmar": 12.340680899056963,
+    "trades": 122,
+    "win_rate": 0.5245901639344263,
+    "final_equity": 59462.09038197107,
+    "accumulated_cash_yield": 2637.050381971133,
+    "stock_profit": 26825.03999999994,
+    "audit_passed": true,
+    "yearly": {
+      "2022": {
+        "return": 0.11423678911442314,
+        "maxdd": -0.03126982734576484
+      },
+      "2023": {
+        "return": 0.06639227293027905,
+        "maxdd": -0.021277763882071806
+      },
+      "2024": {
+        "return": 0.5889920122703816,
+        "maxdd": -0.07957986171363385
+      },
+      "2025": {
+        "return": 0.049469750319788064,
+        "maxdd": -0.05850872074256119
+      }
+    }
+  },
+  "V0.8.9-AutoSweep (Base Compounding)_2026": {
+    "model": "V0.8.9-AutoSweep (Base Compounding)",
+    "period": "2026",
+    "total_return": 0.1747123431861679,
+    "max_drawdown": -0.02979049535447842,
+    "sharpe": 2.5960765245089688,
+    "calmar": 5.864700841904709,
+    "trades": 14,
+    "win_rate": 0.5714285714285714,
+    "final_equity": 35241.37029558504,
+    "accumulated_cash_yield": 395.62029558503895,
+    "stock_profit": 4845.75,
+    "audit_passed": true,
+    "yearly": {
+      "2026": {
+        "return": 0.1746225476608303,
+        "maxdd": -0.029790495354478374
+      }
+    }
+  },
+  "V0.8.10-Gemini (Adaptive Stability)_2022-2025": {
+    "model": "V0.8.10-Gemini (Adaptive Stability)",
+    "period": "2022-2025",
+    "total_return": 0.9820696793990358,
+    "max_drawdown": -0.07957986171363385,
+    "sharpe": 1.816134626022942,
+    "calmar": 12.340680899056963,
+    "trades": 122,
+    "win_rate": 0.5245901639344263,
+    "final_equity": 59462.09038197107,
+    "accumulated_cash_yield": 2637.050381971133,
+    "stock_profit": 26825.03999999994,
+    "audit_passed": true,
+    "yearly": {
+      "2022": {
+        "return": 0.11423678911442314,
+        "maxdd": -0.03126982734576484
+      },
+      "2023": {
+        "return": 0.06639227293027905,
+        "maxdd": -0.021277763882071806
+      },
+      "2024": {
+        "return": 0.5889920122703816,
+        "maxdd": -0.07957986171363385
+      },
+      "2025": {
+        "return": 0.049469750319788064,
+        "maxdd": -0.05850872074256119
+      }
+    }
+  },
+  "V0.8.10-Gemini (Adaptive Stability)_2026": {
+    "model": "V0.8.10-Gemini (Adaptive Stability)",
+    "period": "2026",
+    "total_return": 0.1747123431861679,
+    "max_drawdown": -0.02979049535447842,
+    "sharpe": 2.5960765245089688,
+    "calmar": 5.864700841904709,
+    "trades": 14,
+    "win_rate": 0.5714285714285714,
+    "final_equity": 35241.37029558504,
+    "accumulated_cash_yield": 395.62029558503895,
+    "stock_profit": 4845.75,
+    "audit_passed": true,
+    "yearly": {
+      "2026": {
+        "return": 0.1746225476608303,
+        "maxdd": -0.029790495354478374
+      }
+    }
+  }
+}

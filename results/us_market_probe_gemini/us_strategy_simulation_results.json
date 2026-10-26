@@ -1,0 +1,260 @@
+{
+  "us_2022_2025": {
+    "initial_capital": 30000.0,
+    "final_nav": 42523.22214646168,
+    "total_return": 0.4174407382153893,
+    "max_drawdown": -0.20208167229562932,
+    "sharpe": 0.6830033921117987,
+    "calmar": 2.0657031064386033,
+    "accumulated_cash_yield": 2333.2105891238652,
+    "pure_stock_profit": 10190.011557337817,
+    "trades": 389,
+    "win_rate": 0.5269922879177378,
+    "profit_factor": 1.2027839147087915,
+    "spy_return": 0.4274769109037595,
+    "qqq_return": 0.5293517445725462,
+    "yearly": {
+      "2022": {
+        "return": -0.14008394951225833,
+        "maxdd": -0.18792841619336095
+      },
+      "2023": {
+        "return": 0.18730987529342413,
+        "maxdd": -0.13467067210676975
+      },
+      "2024": {
+        "return": 0.217111245661455,
+        "maxdd": -0.100082878373357
+      },
+      "2025": {
+        "return": 0.1608910364526308,
+        "maxdd": -0.08884075513657969
+      }
+    },
+    "trades_sample": [
+      {
+        "ticker": "LLY",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 285.1624990081787,
+        "exit_price": 292.3437452392578,
+        "shares": 23,
+        "net_pnl": 164.9803939428848,
+        "net_return": 0.025154291434395983,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "COST",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 559.6996929016113,
+        "exit_price": 575.0323473205567,
+        "shares": 12,
+        "net_pnl": 183.79864215864472,
+        "net_return": 0.027365663600449508,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "BRK-B",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 350.1049576721191,
+        "exit_price": 344.6275877990723,
+        "shares": 19,
+        "net_pnl": -104.25336946459902,
+        "net_return": -0.015672498561542576,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "UNH",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 505.5726673278809,
+        "exit_price": 517.5011297607422,
+        "shares": 13,
+        "net_pnl": 154.8816412159631,
+        "net_return": 0.02356530162953077,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "TSLA",
+        "entry_date": "2022-04-05",
+        "exit_date": "2022-04-06",
+        "entry_price": 363.93520307922364,
+        "exit_price": 347.3843398811883,
+        "shares": 18,
+        "net_pnl": -298.0906192719367,
+        "net_return": -0.04550422662999992,
+        "exit_reason": "intraday_stop_loss"
+      }
+    ]
+  },
+  "us_2026_oos": {
+    "initial_capital": 30000.0,
+    "final_nav": 26333.7795973213,
+    "total_return": -0.12220734675595668,
+    "max_drawdown": -0.21245800875991155,
+    "sharpe": -0.872138022592313,
+    "calmar": -0.5752070607705697,
+    "accumulated_cash_yield": 348.7015380962766,
+    "pure_stock_profit": -4014.921940774977,
+    "trades": 89,
+    "win_rate": 0.43820224719101125,
+    "profit_factor": 0.6388325010127448,
+    "spy_return": 0.11241709927859733,
+    "qqq_return": 0.148877919532584,
+    "yearly": {
+      "2026": {
+        "return": -0.12236406745819628,
+        "maxdd": -0.21245800875991155
+      }
+    },
+    "trades_sample": [
+      {
+        "ticker": "AMD",
+        "entry_date": "2026-01-05",
+        "exit_date": "2026-01-07",
+        "entry_price": 221.1905418319702,
+        "exit_price": 211.13134896580678,
+        "shares": 30,
+        "net_pnl": -301.953136318034,
+        "net_return": -0.04550422663,
+        "exit_reason": "intraday_stop_loss"
+      },
+      {
+        "ticker": "LLY",
+        "entry_date": "2026-01-07",
+        "exit_date": "2026-01-12",
+        "entry_price": 1108.6440108032225,
+        "exit_price": 1057.471,
+        "shares": 6,
+        "net_pnl": -307.21571994733495,
+        "net_return": -0.046184906509462616,
+        "exit_reason": "gap_stop_loss"
+      },
+      {
+        "ticker": "JPM",
+        "entry_date": "2026-01-05",
+        "exit_date": "2026-01-13",
+        "entry_price": 334.2070285491943,
+        "exit_price": 319.00812840834834,
+        "shares": 20,
+        "net_pnl": -304.1566473688281,
+        "net_return": -0.04550422662999996,
+        "exit_reason": "intraday_stop_loss"
+      },
+      {
+        "ticker": "UNH",
+        "entry_date": "2026-01-05",
+        "exit_date": "2026-01-20",
+        "entry_price": 342.19099900817866,
+        "exit_price": 326.62900785078426,
+        "shares": 19,
+        "net_pnl": -295.8515986226703,
+        "net_return": -0.04550422662999988,
+        "exit_reason": "intraday_stop_loss"
+      },
+      {
+        "ticker": "NVDA",
+        "entry_date": "2026-01-05",
+        "exit_date": "2026-01-20",
+        "entry_price": 188.2140551147461,
+        "exit_price": 179.65455042326525,
+        "shares": 35,
+        "net_pnl": -299.75872566124417,
+        "net_return": -0.04550422662999986,
+        "exit_reason": "intraday_stop_loss"
+      }
+    ]
+  },
+  "us_zero_cash_baseline": {
+    "initial_capital": 30000.0,
+    "final_nav": 39526.87763346619,
+    "total_return": 0.31756258778220636,
+    "max_drawdown": -0.22334680028515458,
+    "sharpe": 0.5554947704519848,
+    "calmar": 1.421836298423632,
+    "accumulated_cash_yield": 0.0,
+    "pure_stock_profit": 9526.877633466189,
+    "trades": 389,
+    "win_rate": 0.5269922879177378,
+    "profit_factor": 1.199906245962236,
+    "spy_return": 0.4274769109037595,
+    "qqq_return": 0.5293517445725462,
+    "yearly": {
+      "2022": {
+        "return": -0.16815124920392555,
+        "maxdd": -0.20570439742225463
+      },
+      "2023": {
+        "return": 0.17268464556905339,
+        "maxdd": -0.13595819429691108
+      },
+      "2024": {
+        "return": 0.20180814384515355,
+        "maxdd": -0.1031714796107891
+      },
+      "2025": {
+        "return": 0.1439808378282188,
+        "maxdd": -0.09083595495114004
+      }
+    },
+    "trades_sample": [
+      {
+        "ticker": "LLY",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 285.1624990081787,
+        "exit_price": 292.3437452392578,
+        "shares": 23,
+        "net_pnl": 164.9803939428848,
+        "net_return": 0.025154291434395983,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "COST",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 559.6996929016113,
+        "exit_price": 575.0323473205567,
+        "shares": 12,
+        "net_pnl": 183.79864215864472,
+        "net_return": 0.027365663600449508,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "BRK-B",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 350.1049576721191,
+        "exit_price": 344.6275877990723,
+        "shares": 19,
+        "net_pnl": -104.25336946459902,
+        "net_return": -0.015672498561542576,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "UNH",
+        "entry_date": "2022-03-22",
+        "exit_date": "2022-04-05",
+        "entry_price": 505.5726673278809,
+        "exit_price": 517.5011297607422,
+        "shares": 13,
+        "net_pnl": 154.8816412159631,
+        "net_return": 0.02356530162953077,
+        "exit_reason": "time_exit_10d"
+      },
+      {
+        "ticker": "TSLA",
+        "entry_date": "2022-04-05",
+        "exit_date": "2022-04-06",
+        "entry_price": 363.93520307922364,
+        "exit_price": 347.3843398811883,
+        "shares": 18,
+        "net_pnl": -298.0906192719367,
+        "net_return": -0.04550422662999992,
+        "exit_reason": "intraday_stop_loss"
+      }
+    ]
+  }
+}
