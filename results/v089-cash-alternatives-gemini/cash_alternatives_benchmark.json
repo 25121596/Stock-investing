@@ -1,0 +1,1154 @@
+[
+  {
+    "scheme": {
+      "id": "pure_zero_yield",
+      "name": "零收益纯股票基线 (Pure Stock Alpha)",
+      "rate": 0.0,
+      "enable_overlay": false,
+      "slots": 4,
+      "description": "闲置资金不理财，收益率0.00%。绝对纯净的股票交易收益基线。",
+      "practical_ops": "完全无需任何操作，钱躺在账户。",
+      "convenience_score": 10.0
+    },
+    "p1": {
+      "scheme_id": "pure_zero_yield",
+      "scheme_name": "零收益纯股票基线 (Pure Stock Alpha)",
+      "rate": 0.0,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.756800333333334,
+      "net_profit": 22704.010000000017,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 22704.010000000017,
+      "stock_return_pct": 0.7568003333333339,
+      "max_drawdown": -0.0917140290833629,
+      "sharpe": 1.4596476386437243,
+      "calmar": 8.251740119774315,
+      "trades": 126,
+      "win_rate": 0.47619047619047616,
+      "profit_factor": 2.535277765192677,
+      "final_nav": 52704.01000000002,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.10026200000000007,
+          "maxdd": -0.03171141399468265
+        },
+        "2023": {
+          "return": 0.036941504235657785,
+          "maxdd": -0.02405993550405521
+        },
+        "2024": {
+          "return": 0.5377255295638974,
+          "maxdd": -0.08788186757533814
+        },
+        "2025": {
+          "return": 0.0013668472473151727,
+          "maxdd": -0.06394276341401736
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "pure_zero_yield",
+      "scheme_name": "零收益纯股票基线 (Pure Stock Alpha)",
+      "rate": 0.0,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.7116916666666679,
+      "net_profit": 21350.750000000036,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 21350.750000000036,
+      "stock_return_pct": 0.7116916666666678,
+      "max_drawdown": -0.09437239615419235,
+      "sharpe": 1.3656074794724888,
+      "calmar": 7.541311820713499,
+      "trades": 128,
+      "win_rate": 0.4765625,
+      "profit_factor": 2.408436999890497,
+      "final_nav": 51350.75000000004,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.09104466666666666,
+          "maxdd": -0.0352357003688824
+        },
+        "2023": {
+          "return": 0.03303775525230601,
+          "maxdd": -0.02564058191193479
+        },
+        "2024": {
+          "return": 0.5231381927091912,
+          "maxdd": -0.08870039530883068
+        },
+        "2025": {
+          "return": -0.0029257440036126736,
+          "maxdd": -0.06661154845603294
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "pure_zero_yield",
+      "scheme_name": "零收益纯股票基线 (Pure Stock Alpha)",
+      "rate": 0.0,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.14379233333333352,
+      "net_profit": 4313.770000000004,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 4313.770000000004,
+      "stock_return_pct": 0.14379233333333347,
+      "max_drawdown": -0.020776322040038764,
+      "sharpe": 2.3389084119585335,
+      "calmar": 6.920971529812946,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.116480515539891,
+      "final_nav": 34313.770000000004,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.14379233333333352,
+          "maxdd": -0.02077632204003874
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "pure_zero_yield",
+      "scheme_name": "零收益纯股票基线 (Pure Stock Alpha)",
+      "rate": 0.0,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.1411556666666669,
+      "net_profit": 4234.6700000000055,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 4234.6700000000055,
+      "stock_return_pct": 0.14115566666666685,
+      "max_drawdown": -0.02096513101523323,
+      "sharpe": 2.296003121275233,
+      "calmar": 6.73287787059873,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.006254348227348,
+      "final_nav": 34234.670000000006,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.1411556666666669,
+          "maxdd": -0.020965131015233222
+        }
+      }
+    }
+  },
+  {
+    "scheme": {
+      "id": "current_deposit",
+      "name": "券商/银行活期结息 (Current Deposit)",
+      "rate": 0.0025,
+      "enable_overlay": true,
+      "slots": 4,
+      "description": "法定活期存款年化0.25%。证券账户默认享有，按季结息。",
+      "practical_ops": "完全无需任何操作，自动到账。",
+      "convenience_score": 10.0
+    },
+    "p1": {
+      "scheme_id": "current_deposit",
+      "scheme_name": "券商/银行活期结息 (Current Deposit)",
+      "rate": 0.0025,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.7727649357621911,
+      "net_profit": 23182.94807286573,
+      "cash_yield_rmb": 342.7580728657302,
+      "cash_yield_pct": 0.01142526909552434,
+      "stock_net_profit_rmb": 22840.19,
+      "stock_return_pct": 0.7613396666666666,
+      "max_drawdown": -0.09019277159355554,
+      "sharpe": 1.4820854795729068,
+      "calmar": 8.567925368172261,
+      "trades": 127,
+      "win_rate": 0.48031496062992124,
+      "profit_factor": 2.5380122905283744,
+      "final_nav": 53182.94807286573,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.10310923845098685,
+          "maxdd": -0.031049848870717375
+        },
+        "2023": {
+          "return": 0.04161675924402375,
+          "maxdd": -0.023953762434711104
+        },
+        "2024": {
+          "return": 0.5371868668977198,
+          "maxdd": -0.08743525856133653
+        },
+        "2025": {
+          "return": 0.003644851289190454,
+          "maxdd": -0.0630285334235343
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "current_deposit",
+      "scheme_name": "券商/银行活期结息 (Current Deposit)",
+      "rate": 0.0025,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.7248781206053452,
+      "net_profit": 21746.343618160354,
+      "cash_yield_rmb": 336.0936181603492,
+      "cash_yield_pct": 0.011203120605344973,
+      "stock_net_profit_rmb": 21410.250000000004,
+      "stock_return_pct": 0.7136750000000002,
+      "max_drawdown": -0.09302252930627819,
+      "sharpe": 1.3876160506296533,
+      "calmar": 7.7925006556064735,
+      "trades": 128,
+      "win_rate": 0.4765625,
+      "profit_factor": 2.409723753995873,
+      "final_nav": 51746.343618160354,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.0933444615921053,
+          "maxdd": -0.03455593191415118
+        },
+        "2023": {
+          "return": 0.035382117799201085,
+          "maxdd": -0.02554237773556671
+        },
+        "2024": {
+          "return": 0.5225616360106466,
+          "maxdd": -0.0884261765405719
+        },
+        "2025": {
+          "return": 0.0007092528769139239,
+          "maxdd": -0.06589170125397165
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "current_deposit",
+      "scheme_name": "券商/银行活期结息 (Current Deposit)",
+      "rate": 0.0025,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.1455727767871804,
+      "net_profit": 4367.183303615413,
+      "cash_yield_rmb": 53.41330361541713,
+      "cash_yield_pct": 0.0017804434538472376,
+      "stock_net_profit_rmb": 4313.769999999996,
+      "stock_return_pct": 0.1437923333333332,
+      "max_drawdown": -0.020620848379511836,
+      "sharpe": 2.368108719109199,
+      "calmar": 7.05949503667446,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.116480515539891,
+      "final_nav": 34367.18330361541,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.14556094247992335,
+          "maxdd": -0.02062084837951185
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "current_deposit",
+      "scheme_name": "券商/银行活期结息 (Current Deposit)",
+      "rate": 0.0025,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.14293509296907714,
+      "net_profit": 4288.052789072317,
+      "cash_yield_rmb": 53.38278907232138,
+      "cash_yield_pct": 0.0017794263024107128,
+      "stock_net_profit_rmb": 4234.6699999999955,
+      "stock_return_pct": 0.1411556666666665,
+      "max_drawdown": -0.020808041675078548,
+      "sharpe": 2.3251600118766707,
+      "calmar": 6.869223697310649,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.006254348227348,
+      "final_nav": 34288.05278907232,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.14292328591033843,
+          "maxdd": -0.020808041675078583
+        }
+      }
+    }
+  },
+  {
+    "scheme": {
+      "id": "lingqiantong_yu_ebao",
+      "name": "微信零钱通 / 支付宝余额宝 (Retail MMF)",
+      "rate": 0.016,
+      "enable_overlay": true,
+      "slots": 4,
+      "description": "公募货币基金年化1.60%。散户最普遍的零钱理财方案。",
+      "practical_ops": "需将未占用资金划转至零钱通/余额宝，买入股票时需T+0转回。",
+      "convenience_score": 7.5
+    },
+    "p1": {
+      "scheme_id": "lingqiantong_yu_ebao",
+      "scheme_name": "微信零钱通 / 支付宝余额宝 (Retail MMF)",
+      "rate": 0.016,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.8577652265687072,
+      "net_profit": 25732.95679706122,
+      "cash_yield_rmb": 2246.0167970612433,
+      "cash_yield_pct": 0.07486722656870812,
+      "stock_net_profit_rmb": 23486.939999999977,
+      "stock_return_pct": 0.7828979999999992,
+      "max_drawdown": -0.08574022541975901,
+      "sharpe": 1.5980038726589436,
+      "calmar": 10.004233396510683,
+      "trades": 128,
+      "win_rate": 0.484375,
+      "profit_factor": 2.5413380478566108,
+      "final_nav": 55732.95679706122,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.11649730631510957,
+          "maxdd": -0.02794906867908189
+        },
+        "2023": {
+          "return": 0.05255740190284364,
+          "maxdd": -0.024337042254502048
+        },
+        "2024": {
+          "return": 0.5547235332626572,
+          "maxdd": -0.08574022541975902
+        },
+        "2025": {
+          "return": 0.016527979555160055,
+          "maxdd": -0.06156649005462636
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "lingqiantong_yu_ebao",
+      "scheme_name": "微信零钱通 / 支付宝余额宝 (Retail MMF)",
+      "rate": 0.016,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.8029915797733507,
+      "net_profit": 24089.747393200523,
+      "cash_yield_rmb": 2211.177393200411,
+      "cash_yield_pct": 0.07370591310668037,
+      "stock_net_profit_rmb": 21878.570000000112,
+      "stock_return_pct": 0.7292856666666704,
+      "max_drawdown": -0.08825759780711995,
+      "sharpe": 1.5255273834567005,
+      "calmar": 9.098271420532267,
+      "trades": 127,
+      "win_rate": 0.47244094488188976,
+      "profit_factor": 2.407132208325777,
+      "final_nav": 54089.74739320052,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.10609617212980971,
+          "maxdd": -0.030927302604866296
+        },
+        "2023": {
+          "return": 0.050147387537627264,
+          "maxdd": -0.024839655924028543
+        },
+        "2024": {
+          "return": 0.5352529614378627,
+          "maxdd": -0.0882575978071199
+        },
+        "2025": {
+          "return": 0.010777947285816936,
+          "maxdd": -0.06309510100120813
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "lingqiantong_yu_ebao",
+      "scheme_name": "微信零钱通 / 支付宝余额宝 (Retail MMF)",
+      "rate": 0.016,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.15524382058431785,
+      "net_profit": 4657.314617529533,
+      "cash_yield_rmb": 343.54461752954444,
+      "cash_yield_pct": 0.011451487250984814,
+      "stock_net_profit_rmb": 4313.769999999989,
+      "stock_return_pct": 0.14379233333333297,
+      "max_drawdown": -0.019784351354195095,
+      "sharpe": 2.526987799701198,
+      "calmar": 7.846798603857173,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.116480515539891,
+      "final_nav": 34657.31461752953,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.15516744587715237,
+          "maxdd": -0.019784351354195106
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "lingqiantong_yu_ebao",
+      "scheme_name": "微信零钱通 / 支付宝余额宝 (Retail MMF)",
+      "rate": 0.016,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.15260064274526264,
+      "net_profit": 4578.019282357876,
+      "cash_yield_rmb": 343.34928235783997,
+      "cash_yield_pct": 0.011444976078594666,
+      "stock_net_profit_rmb": 4234.670000000036,
+      "stock_return_pct": 0.14115566666666787,
+      "max_drawdown": -0.019962782877384844,
+      "sharpe": 2.4838027456951055,
+      "calmar": 7.6442569997662355,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.006254348227348,
+      "final_nav": 34578.01928235788,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.1525244427821033,
+          "maxdd": -0.01996278287738486
+        }
+      }
+    }
+  },
+  {
+    "scheme": {
+      "id": "broker_cash_sweep",
+      "name": "券商保证金夜间自动理财 (Auto Cash Sweep)",
+      "rate": 0.0185,
+      "enable_overlay": true,
+      "slots": 4,
+      "description": "券商天天发/天天利/现金管家，年化1.85%。15:00自动归集，次日9:15自动解冻。",
+      "practical_ops": "一次性签约开通，全自动免维护，完全不影响盘中任何挂单和交易。",
+      "convenience_score": 9.8
+    },
+    "p1": {
+      "scheme_id": "broker_cash_sweep",
+      "scheme_name": "券商保证金夜间自动理财 (Auto Cash Sweep)",
+      "rate": 0.0185,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.8727494981346615,
+      "net_profit": 26182.484944039847,
+      "cash_yield_rmb": 2609.614944039829,
+      "cash_yield_pct": 0.08698716480132763,
+      "stock_net_profit_rmb": 23572.870000000017,
+      "stock_return_pct": 0.7857623333333339,
+      "max_drawdown": -0.08380425223350385,
+      "sharpe": 1.5897721325647904,
+      "calmar": 10.414143374287487,
+      "trades": 128,
+      "win_rate": 0.484375,
+      "profit_factor": 2.544753066194144,
+      "final_nav": 56182.48494403985,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.11848216493370933,
+          "maxdd": -0.027882755000682317
+        },
+        "2023": {
+          "return": 0.0547943042456045,
+          "maxdd": -0.024247919870563184
+        },
+        "2024": {
+          "return": 0.5556400925741436,
+          "maxdd": -0.08328995484311033
+        },
+        "2025": {
+          "return": 0.02009572349767419,
+          "maxdd": -0.06084664905368619
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "broker_cash_sweep",
+      "scheme_name": "券商保证金夜间自动理财 (Auto Cash Sweep)",
+      "rate": 0.0185,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.8217489489521128,
+      "net_profit": 24652.468468563384,
+      "cash_yield_rmb": 2563.6884685633395,
+      "cash_yield_pct": 0.08545628228544465,
+      "stock_net_profit_rmb": 22088.780000000042,
+      "stock_return_pct": 0.736292666666668,
+      "max_drawdown": -0.08783496353360898,
+      "sharpe": 1.549469464919565,
+      "calmar": 9.355601868470982,
+      "trades": 128,
+      "win_rate": 0.4765625,
+      "profit_factor": 2.4128554560724162,
+      "final_nav": 54652.468468563384,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.1080722647068677,
+          "maxdd": -0.030259616653701082
+        },
+        "2023": {
+          "return": 0.051404265544312544,
+          "maxdd": -0.0257057508777354
+        },
+        "2024": {
+          "return": 0.5393478195462895,
+          "maxdd": -0.08783496353360895
+        },
+        "2025": {
+          "return": 0.015502862456786115,
+          "maxdd": -0.06290903411642035
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "broker_cash_sweep",
+      "scheme_name": "券商保证金夜间自动理财 (Auto Cash Sweep)",
+      "rate": 0.0185,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.15704529353494534,
+      "net_profit": 4711.35880604836,
+      "cash_yield_rmb": 397.5888060483602,
+      "cash_yield_pct": 0.013252960201612006,
+      "stock_net_profit_rmb": 4313.7699999999995,
+      "stock_return_pct": 0.14379233333333333,
+      "max_drawdown": -0.019634016319861836,
+      "sharpe": 2.5566322940327972,
+      "calmar": 7.998633136312401,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.116480515539891,
+      "final_nav": 34711.35880604836,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.15695684848661062,
+          "maxdd": -0.019634016319861787
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "broker_cash_sweep",
+      "scheme_name": "券商保证金夜间自动理财 (Auto Cash Sweep)",
+      "rate": 0.0185,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.1544010980243804,
+      "net_profit": 4632.032940731413,
+      "cash_yield_rmb": 397.36294073142506,
+      "cash_yield_pct": 0.01324543135771417,
+      "stock_net_profit_rmb": 4234.669999999988,
+      "stock_return_pct": 0.14115566666666626,
+      "max_drawdown": -0.019810837209722654,
+      "sharpe": 2.513403116640579,
+      "calmar": 7.793769460111674,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.006254348227348,
+      "final_nav": 34632.03294073141,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.1543128550995072,
+          "maxdd": -0.019810837209722685
+        }
+      }
+    }
+  },
+  {
+    "scheme": {
+      "id": "etf_cash_sweep",
+      "name": "场内货币ETF (511880/511990 On-Exchange MMF)",
+      "rate": 0.0195,
+      "enable_overlay": true,
+      "slots": 4,
+      "description": "场内货基ETF年化1.95%(扣费)。支持T+0回转，场内免印花税。",
+      "practical_ops": "白天未买股票时买入货基ETF，需要买股票时T+0实时卖出变现。",
+      "convenience_score": 8.0
+    },
+    "p1": {
+      "scheme_id": "etf_cash_sweep",
+      "scheme_name": "场内货币ETF (511880/511990 On-Exchange MMF)",
+      "rate": 0.0195,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.8779335711104477,
+      "net_profit": 26338.007133313433,
+      "cash_yield_rmb": 2755.0171333133844,
+      "cash_yield_pct": 0.09183390444377948,
+      "stock_net_profit_rmb": 23582.99000000005,
+      "stock_return_pct": 0.7860996666666683,
+      "max_drawdown": -0.08322823654256006,
+      "sharpe": 1.5986688736151309,
+      "calmar": 10.548506223143423,
+      "trades": 128,
+      "win_rate": 0.484375,
+      "profit_factor": 2.5435358721868235,
+      "final_nav": 56338.00713331343,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.11927750632826184,
+          "maxdd": -0.0278562110293661
+        },
+        "2023": {
+          "return": 0.056522444422843376,
+          "maxdd": -0.0242122075768672
+        },
+        "2024": {
+          "return": 0.5548494467448206,
+          "maxdd": -0.0830692995804162
+        },
+        "2025": {
+          "return": 0.021022717649810563,
+          "maxdd": -0.060532151899787855
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "etf_cash_sweep",
+      "scheme_name": "场内货币ETF (511880/511990 On-Exchange MMF)",
+      "rate": 0.0195,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.8260525115885802,
+      "net_profit": 24781.575347657403,
+      "cash_yield_rmb": 2707.845347657427,
+      "cash_yield_pct": 0.0902615115885809,
+      "stock_net_profit_rmb": 22073.729999999974,
+      "stock_return_pct": 0.7357909999999991,
+      "max_drawdown": -0.08651471728284599,
+      "sharpe": 1.5283756619943005,
+      "calmar": 9.548115482917595,
+      "trades": 128,
+      "win_rate": 0.4765625,
+      "profit_factor": 2.4102430101907504,
+      "final_nav": 54781.5753476574,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.10886409609964365,
+          "maxdd": -0.029992295334492384
+        },
+        "2023": {
+          "return": 0.05230015621829209,
+          "maxdd": -0.025669121794125664
+        },
+        "2024": {
+          "return": 0.5391310839490673,
+          "maxdd": -0.08573322186700483
+        },
+        "2025": {
+          "return": 0.01643526179621957,
+          "maxdd": -0.06261871023750218
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "etf_cash_sweep",
+      "scheme_name": "场内货币ETF (511880/511990 On-Exchange MMF)",
+      "rate": 0.0195,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.15776680877035432,
+      "net_profit": 4733.004263110626,
+      "cash_yield_rmb": 419.2342631106156,
+      "cash_yield_pct": 0.013974475437020519,
+      "stock_net_profit_rmb": 4313.77000000001,
+      "stock_return_pct": 0.1437923333333337,
+      "max_drawdown": -0.019573864095356996,
+      "sharpe": 2.568509611441001,
+      "calmar": 8.060074801877125,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.116480515539891,
+      "final_nav": 34733.004263110626,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.15767352515985578,
+          "maxdd": -0.01957386409535703
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "etf_cash_sweep",
+      "scheme_name": "场内货币ETF (511880/511990 On-Exchange MMF)",
+      "rate": 0.0195,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.15512220616838523,
+      "net_profit": 4653.666185051559,
+      "cash_yield_rmb": 418.99618505156246,
+      "cash_yield_pct": 0.013966539501718748,
+      "stock_net_profit_rmb": 4234.669999999996,
+      "stock_return_pct": 0.14115566666666654,
+      "max_drawdown": -0.01975004121795043,
+      "sharpe": 2.52526275326037,
+      "calmar": 7.854272528170608,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.006254348227348,
+      "final_nav": 34653.66618505156,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.15502913563886067,
+          "maxdd": -0.01975004121795039
+        }
+      }
+    }
+  },
+  {
+    "scheme": {
+      "id": "treasury_repo_gc001",
+      "name": "国债逆回购对照组 (GC001 Benchmark / 原V0.8.9)",
+      "rate": 0.022,
+      "enable_overlay": true,
+      "slots": 4,
+      "description": "上交所1天期逆回购年化2.20%。原V0.8.9对照基准。",
+      "practical_ops": "每日15:00-15:30需手动或预约挂单卖出GC001/R-001。",
+      "convenience_score": 6.0
+    },
+    "p1": {
+      "scheme_id": "treasury_repo_gc001",
+      "scheme_name": "国债逆回购对照组 (GC001 Benchmark / 原V0.8.9)",
+      "rate": 0.022,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.9025776669283194,
+      "net_profit": 27077.33000784958,
+      "cash_yield_rmb": 3137.710007849635,
+      "cash_yield_pct": 0.10459033359498783,
+      "stock_net_profit_rmb": 23939.619999999944,
+      "stock_return_pct": 0.7979873333333315,
+      "max_drawdown": -0.08319274693358636,
+      "sharpe": 1.6406417665930182,
+      "calmar": 10.84923506190818,
+      "trades": 127,
+      "win_rate": 0.4881889763779528,
+      "profit_factor": 2.5785849745866205,
+      "final_nav": 57077.33000784958,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.12126936173279268,
+          "maxdd": -0.027789804935342808
+        },
+        "2023": {
+          "return": 0.058764016475500114,
+          "maxdd": -0.02412276878116157
+        },
+        "2024": {
+          "return": 0.5661989469503081,
+          "maxdd": -0.08319274693358639
+        },
+        "2025": {
+          "return": 0.022888793593836665,
+          "maxdd": -0.05976137243104653
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "treasury_repo_gc001",
+      "scheme_name": "国债逆回购对照组 (GC001 Benchmark / 原V0.8.9)",
+      "rate": 0.022,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.8445026251750207,
+      "net_profit": 25335.078755250623,
+      "cash_yield_rmb": 3070.3387552506424,
+      "cash_yield_pct": 0.10234462517502141,
+      "stock_net_profit_rmb": 22264.73999999998,
+      "stock_return_pct": 0.7421579999999993,
+      "max_drawdown": -0.08719632557110457,
+      "sharpe": 1.5835541901836472,
+      "calmar": 9.685071241750524,
+      "trades": 128,
+      "win_rate": 0.4765625,
+      "profit_factor": 2.4188104666293673,
+      "final_nav": 55335.07875525062,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.11075805579980047,
+          "maxdd": -0.029403232886592197
+        },
+        "2023": {
+          "return": 0.05454707086541166,
+          "maxdd": -0.02557951021219734
+        },
+        "2024": {
+          "return": 0.5456854149392194,
+          "maxdd": -0.08719632557110459
+        },
+        "2025": {
+          "return": 0.018391601849080175,
+          "maxdd": -0.06162403234952153
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "treasury_repo_gc001",
+      "scheme_name": "国债逆回购对照组 (GC001 Benchmark / 原V0.8.9)",
+      "rate": 0.022,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.15957291545054408,
+      "net_profit": 4787.187463516326,
+      "cash_yield_rmb": 473.4174635163459,
+      "cash_yield_pct": 0.01578058211721153,
+      "stock_net_profit_rmb": 4313.7699999999795,
+      "stock_return_pct": 0.14379233333333266,
+      "max_drawdown": -0.01942343802056623,
+      "sharpe": 2.598251753425457,
+      "calmar": 8.215482515586714,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.116480515539891,
+      "final_nav": 34787.187463516326,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.15946750931333398,
+          "maxdd": -0.0194234380205662
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "treasury_repo_gc001",
+      "scheme_name": "国债逆回购对照组 (GC001 Benchmark / 原V0.8.9)",
+      "rate": 0.022,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.15692729506303538,
+      "net_profit": 4707.818851891061,
+      "cash_yield_rmb": 473.14885189104774,
+      "cash_yield_pct": 0.015771628396368257,
+      "stock_net_profit_rmb": 4234.670000000014,
+      "stock_return_pct": 0.14115566666666712,
+      "max_drawdown": -0.019598006939472556,
+      "sharpe": 2.554960614395749,
+      "calmar": 8.00730888338275,
+      "trades": 15,
+      "win_rate": 0.5333333333333333,
+      "profit_factor": 4.006254348227348,
+      "final_nav": 34707.81885189106,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.1568221294149068,
+          "maxdd": -0.019598006939472515
+        }
+      }
+    }
+  },
+  {
+    "scheme": {
+      "id": "stock_util_slots5_zero",
+      "name": "纯内生股票扩容 (5 Slots Reinvestment, 0% Overlay)",
+      "rate": 0.0,
+      "enable_overlay": false,
+      "slots": 5,
+      "description": "不靠外部利息(0%)，将槽位从4扩到5，靠股票策略自身吞吐闲置资金。",
+      "practical_ops": "完全靠量化交易算法调度，无需任何理财操作。",
+      "convenience_score": 9.5
+    },
+    "p1": {
+      "scheme_id": "stock_util_slots5_zero",
+      "scheme_name": "纯内生股票扩容 (5 Slots Reinvestment, 0% Overlay)",
+      "rate": 0.0,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.6587163333333332,
+      "net_profit": 19761.489999999998,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 19761.489999999998,
+      "stock_return_pct": 0.6587163333333332,
+      "max_drawdown": -0.07869799073037964,
+      "sharpe": 1.3362065115005364,
+      "calmar": 8.370179812977744,
+      "trades": 136,
+      "win_rate": 0.47058823529411764,
+      "profit_factor": 2.4863157942239607,
+      "final_nav": 49761.49,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.1018006666666671,
+          "maxdd": -0.03159133085896068
+        },
+        "2023": {
+          "return": 0.031159296206633602,
+          "maxdd": -0.024092934312300175
+        },
+        "2024": {
+          "return": 0.4619251988325297,
+          "maxdd": -0.07869799073037964
+        },
+        "2025": {
+          "return": -0.0013388001172026653,
+          "maxdd": -0.05533713840756823
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "stock_util_slots5_zero",
+      "scheme_name": "纯内生股票扩容 (5 Slots Reinvestment, 0% Overlay)",
+      "rate": 0.0,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.6217476666666664,
+      "net_profit": 18652.429999999993,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 18652.429999999993,
+      "stock_return_pct": 0.6217476666666665,
+      "max_drawdown": -0.08749179552850561,
+      "sharpe": 1.2679811675200028,
+      "calmar": 7.106353949086522,
+      "trades": 136,
+      "win_rate": 0.4485294117647059,
+      "profit_factor": 2.3479429384941124,
+      "final_nav": 48652.42999999999,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.09247666666666632,
+          "maxdd": -0.03520051628793582
+        },
+        "2023": {
+          "return": 0.027929505740778904,
+          "maxdd": -0.02561433330118107
+        },
+        "2024": {
+          "return": 0.44902517596640146,
+          "maxdd": -0.08749179552850564
+        },
+        "2025": {
+          "return": -0.0033748364817467458,
+          "maxdd": -0.05693384992742277
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "stock_util_slots5_zero",
+      "scheme_name": "纯内生股票扩容 (5 Slots Reinvestment, 0% Overlay)",
+      "rate": 0.0,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.1542043333333334,
+      "net_profit": 4626.130000000005,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 4626.130000000005,
+      "stock_return_pct": 0.1542043333333335,
+      "max_drawdown": -0.020776322040038764,
+      "sharpe": 2.423578394016576,
+      "calmar": 7.422118940790431,
+      "trades": 16,
+      "win_rate": 0.5625,
+      "profit_factor": 4.342144807756221,
+      "final_nav": 34626.130000000005,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.1542043333333334,
+          "maxdd": -0.02077632204003874
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "stock_util_slots5_zero",
+      "scheme_name": "纯内生股票扩容 (5 Slots Reinvestment, 0% Overlay)",
+      "rate": 0.0,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.15140233333333342,
+      "net_profit": 4542.07,
+      "cash_yield_rmb": 0.0,
+      "cash_yield_pct": 0.0,
+      "stock_net_profit_rmb": 4542.07,
+      "stock_return_pct": 0.15140233333333333,
+      "max_drawdown": -0.02096513101523323,
+      "sharpe": 2.379413868660589,
+      "calmar": 7.221625909388534,
+      "trades": 16,
+      "win_rate": 0.5625,
+      "profit_factor": 4.224482117249512,
+      "final_nav": 34542.07,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.15140233333333342,
+          "maxdd": -0.020965131015233222
+        }
+      }
+    }
+  },
+  {
+    "scheme": {
+      "id": "stock_util_slots5_sweep",
+      "name": "扩容组合拳 (5 Slots + 券商夜间自动理财 1.85%)",
+      "rate": 0.0185,
+      "enable_overlay": true,
+      "slots": 5,
+      "description": "5槽位股票端积极吞吐 + 盘后券商自动理财(1.85%)双轮驱动。",
+      "practical_ops": "一次性签约券商自动理财，策略全自动运行。",
+      "convenience_score": 9.5
+    },
+    "p1": {
+      "scheme_id": "stock_util_slots5_sweep",
+      "scheme_name": "扩容组合拳 (5 Slots + 券商夜间自动理财 1.85%)",
+      "rate": 0.0185,
+      "period": "2022-2025",
+      "stress": false,
+      "total_return": 0.7562035684735928,
+      "net_profit": 22686.107054207787,
+      "cash_yield_rmb": 2547.3070542077835,
+      "cash_yield_pct": 0.08491023514025944,
+      "stock_net_profit_rmb": 20138.800000000003,
+      "stock_return_pct": 0.6712933333333334,
+      "max_drawdown": -0.0835868663393673,
+      "sharpe": 1.4723832843703273,
+      "calmar": 9.046918512333798,
+      "trades": 136,
+      "win_rate": 0.4632352941176471,
+      "profit_factor": 2.4430198889224046,
+      "final_nav": 52686.10705420779,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.11654777328437649,
+          "maxdd": -0.027032406438222488
+        },
+        "2023": {
+          "return": 0.0473979682797232,
+          "maxdd": -0.023423721352419217
+        },
+        "2024": {
+          "return": 0.4734763797697552,
+          "maxdd": -0.08358686633936731
+        },
+        "2025": {
+          "return": 0.01884904861683845,
+          "maxdd": -0.05247920418512909
+        }
+      }
+    },
+    "p1_stress": {
+      "scheme_id": "stock_util_slots5_sweep",
+      "scheme_name": "扩容组合拳 (5 Slots + 券商夜间自动理财 1.85%)",
+      "rate": 0.0185,
+      "period": "2022-2025",
+      "stress": true,
+      "total_return": 0.7101793109774956,
+      "net_profit": 21305.379329324867,
+      "cash_yield_rmb": 2507.5993293248957,
+      "cash_yield_pct": 0.08358664431082986,
+      "stock_net_profit_rmb": 18797.77999999997,
+      "stock_return_pct": 0.6265926666666657,
+      "max_drawdown": -0.07814863314890363,
+      "sharpe": 1.4187090573867467,
+      "calmar": 9.087546158668278,
+      "trades": 136,
+      "win_rate": 0.4632352941176471,
+      "profit_factor": 2.336349954608498,
+      "final_nav": 51305.37932932487,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2022": {
+          "return": 0.10714823795871808,
+          "maxdd": -0.030108662941034717
+        },
+        "2023": {
+          "return": 0.04421246810418289,
+          "maxdd": -0.02479761623647066
+        },
+        "2024": {
+          "return": 0.45956880300203085,
+          "maxdd": -0.07814863314890368
+        },
+        "2025": {
+          "return": 0.013187055756493038,
+          "maxdd": -0.05432609948800145
+        }
+      }
+    },
+    "p2": {
+      "scheme_id": "stock_util_slots5_sweep",
+      "scheme_name": "扩容组合拳 (5 Slots + 券商夜间自动理财 1.85%)",
+      "rate": 0.0185,
+      "period": "2026",
+      "stress": false,
+      "total_return": 0.1710737929998376,
+      "net_profit": 5132.213789995127,
+      "cash_yield_rmb": 398.0837899951313,
+      "cash_yield_pct": 0.013269459666504377,
+      "stock_net_profit_rmb": 4734.129999999996,
+      "stock_return_pct": 0.15780433333333319,
+      "max_drawdown": -0.019634016319861836,
+      "sharpe": 2.7864897734626517,
+      "calmar": 8.713132871687531,
+      "trades": 16,
+      "win_rate": 0.5625,
+      "profit_factor": 4.618175981901978,
+      "final_nav": 35132.21378999513,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.17098427560686758,
+          "maxdd": -0.019634016319861787
+        }
+      }
+    },
+    "p2_stress": {
+      "scheme_id": "stock_util_slots5_sweep",
+      "scheme_name": "扩容组合拳 (5 Slots + 券商夜间自动理财 1.85%)",
+      "rate": 0.0185,
+      "period": "2026",
+      "stress": true,
+      "total_return": 0.16835230724314054,
+      "net_profit": 5050.5692172942145,
+      "cash_yield_rmb": 397.8492172942116,
+      "cash_yield_pct": 0.01326164057647372,
+      "stock_net_profit_rmb": 4652.720000000003,
+      "stock_return_pct": 0.15509066666666677,
+      "max_drawdown": -0.019810837209722654,
+      "sharpe": 2.742043209064806,
+      "calmar": 8.497990542293564,
+      "trades": 16,
+      "win_rate": 0.5625,
+      "profit_factor": 4.499022350570052,
+      "final_nav": 35050.569217294214,
+      "audit_pass": true,
+      "yearly_stats": {
+        "2026": {
+          "return": 0.16826299788173205,
+          "maxdd": -0.019810837209722685
+        }
+      }
+    }
+  }
+]
