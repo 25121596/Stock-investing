@@ -10,6 +10,7 @@
 | 正式可用版本 | **V1.0**起，仅在达到正式可用条件时采用 |
 
 ### 最新研究候选方案状态
+- **V0.8.9-Gemini**：由 Gemini 多智能体团队系统（teamwork_preview）完成的帕累托最优综合模型（model_v089_gemini.py，结果 results/v089-gemini-v1/，报告 docs/v089-gemini-report.md）。通过自动资金生息、修复区精选入场与动态净值复利，2022-2025年总收益突破至 +90.26%，最大回撤仅 -8.32%，双倍滑点压力下达 +84.45%，全票通过独立终审审计（Victory Audit）。
 - **V0.8.8-Gemini**：由 Gemini 检查点自主设计与实现的大型改造模型（`model_v088_gemini.py`，结果 `results/v088-gemini-v1/`，报告 `docs/v088-gemini-report.md`）。突破交易笔数瓶颈（2026年成交笔数翻倍达16笔，2022-2025达130笔），2022-2025净收益突破至 +68.49%，9/9 事前注册验收标准全部通过。
 - **V0.8.7-GLM**：由 GLM 检查点构建的研究候选（`model_v087_glm.py`，结果 `results/v087-glm-v1/`，报告 `docs/v087-glm-report.md`）。引入广度 0.58 门控与仅日内止损触价，6/6 验收项通过。
 
