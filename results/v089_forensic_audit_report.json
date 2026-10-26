@@ -1,0 +1,61 @@
+{
+  "dimension_1_code_forensics": {
+    "passed": true,
+    "reads_real_comparison_csv": true,
+    "reads_real_acceptance_json": true,
+    "reads_real_summary_json": true,
+    "suspicious_hardcoded_asserts": false
+  },
+  "dimension_2_microstructure": {
+    "passed": true,
+    "total_trades_audited": 142,
+    "total_fills_audited": 284,
+    "t_plus_1_violations": 0,
+    "lookahead_signal_violations": 0,
+    "lot_size_violations": 0,
+    "min_commission_violations": 0,
+    "buy_stamp_tax_violations": 0,
+    "sell_stamp_tax_max_error": 0.0,
+    "limit_up_buy_violations": 0
+  },
+  "dimension_3_ledger_conservation": {
+    "passed": true,
+    "total_days_verified": 1154,
+    "p1_ledger_audit_passed": true,
+    "p1_max_discrepancy": 0.0,
+    "p2_ledger_audit_passed": true,
+    "p2_max_discrepancy": 0.0,
+    "negative_cash_days": 0
+  },
+  "dimension_4_bit_for_bit_parity": {
+    "passed": true,
+    "p1_return_fresh": 0.9025776669283194,
+    "p1_return_saved": 0.9025776669283194,
+    "p1_trades_fresh": 127,
+    "p1_trades_saved": 127,
+    "p2_return_fresh": 0.15957291545054408,
+    "p2_return_saved": 0.159572915450544,
+    "p2_trades_fresh": 15,
+    "p2_trades_saved": 15
+  },
+  "dimension_5_attribution": {
+    "passed": true,
+    "total_lift_pp": 21.77,
+    "cash_overlay_lift_pp": 10.820000000000007,
+    "active_alpha_compounding_lift_pp": 10.950000000000003
+  },
+  "dimension_6_placebo_test": {
+    "passed": "True",
+    "candidate_return": 0.9025776669283194,
+    "random_seeds_returns": [
+      0.4782501623596007,
+      0.6040822738993188,
+      0.33097258890386905
+    ],
+    "random_seeds_mean": 0.47110167505426287,
+    "random_seeds_std": 0.11161108267146347,
+    "z_score": 3.8658884184838715,
+    "strictly_beats_all_seeds": true
+  },
+  "overall_audit_passed": "True"
+}
